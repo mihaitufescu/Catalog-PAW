@@ -1,0 +1,279 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\pages\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\pages\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\pages\\user.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\pages\\user.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\dal\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\dal\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\mappings\\catalogonlineprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\mappings\\catalogonlineprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\dal\\dbo\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\dal\\dbo\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/Mihai/CatalogPaw/True/SqlTable/dbo.User.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\migrations\\20240509170346_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\migrations\\20240509170346_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\dal\\repository\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\dal\\repository\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|c:\\users\\mihai\\documents\\github\\catalog-paw\\catalogonline\\catalogonline\\dal\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDEBD2D-E99C-454C-A3C5-E9EC4F1AEEB0}|CatalogOnline\\CatalogOnline.csproj|solutionrelative:catalogonline\\dal\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\DBO\\User.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\DAL\\DBO\\User.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\DBO\\User.cs",
+              "RelativeToolTip": "CatalogOnline\\DAL\\DBO\\User.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAuwBQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:40:46.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Models\\UserModel.cs",
+              "RelativeToolTip": "CatalogOnline\\Models\\UserModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:51:09.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\User.cshtml.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Pages\\User.cshtml.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\User.cshtml.cs",
+              "RelativeToolTip": "CatalogOnline\\Pages\\User.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABIAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T17:21:13.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cshtml",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\User.cshtml",
+              "RelativeDocumentMoniker": "CatalogOnline\\Pages\\User.cshtml",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\User.cshtml",
+              "RelativeToolTip": "CatalogOnline\\Pages\\User.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-09T17:20:59.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Program.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Program.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Program.cs",
+              "RelativeToolTip": "CatalogOnline\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:33:47.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CatalogOnlineProfile.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Mappings\\CatalogOnlineProfile.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Mappings\\CatalogOnlineProfile.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Mappings\\CatalogOnlineProfile.cs",
+              "RelativeToolTip": "CatalogOnline\\Mappings\\CatalogOnlineProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T17:33:48.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20240509170346_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Migrations\\20240509170346_InitialCreate.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Migrations\\20240509170346_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Migrations\\20240509170346_InitialCreate.cs",
+              "RelativeToolTip": "CatalogOnline\\Migrations\\20240509170346_InitialCreate.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T17:03:46.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CatalogOnline\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "CatalogOnline\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAC0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-09T17:20:23.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\DAL\\Repository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "CatalogOnline\\DAL\\Repository\\UserRepository.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAA5wAwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:56:01.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Services\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Services\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Services\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "CatalogOnline\\Services\\Interfaces\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T17:32:34.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\Services\\UserService.cs",
+              "RelativeToolTip": "CatalogOnline\\Services\\UserService.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBYAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T17:32:49.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "dbo.User [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/Mihai/CatalogPaw/True/SqlTable/dbo.User.sql",
+              "ToolTip": "dbo.User [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-05-09T17:16:07.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\DataContext.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\DAL\\DataContext.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\DataContext.cs",
+              "RelativeToolTip": "CatalogOnline\\DAL\\DataContext.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAQwBQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:38:15.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\appsettings.json",
+              "RelativeDocumentMoniker": "CatalogOnline\\appsettings.json",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\appsettings.json",
+              "RelativeToolTip": "CatalogOnline\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-09T16:24:01.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\Repository\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "CatalogOnline\\DAL\\Repository\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\DAL\\Repository\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "CatalogOnline\\DAL\\Repository\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T16:53:38.512Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
