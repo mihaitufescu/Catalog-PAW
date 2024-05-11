@@ -1,0 +1,41 @@
+.table thead th {
+    background-color: #CFFDBC;
+    border-bottom: 2px solid #bccffd;
+    text-align: center;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #CFFDBC;
+}
+
+.table tbody td {
+    color: #5F6A6A;
+    border-bottom: 1px solid #bccffd;
+    text-align: center;
+}
+
+.btn-update {
+    background-color: #E6E6FA;
+    color: #5F6A6A;
+    border: 1px solid #bccffd;
+}
+
+.btn-delete {
+    background-color: #FFDAB9;
+    color: #5F6A6A;
+    border: 1px solid #bccffd;
+}
+
+.btn-spacing {
+    margin-right: 10px;
+}
+
+.btn-success {
+    background-color: palegoldenrod;
+    color: #5F6A6A;
+    border: 1px solid;
+}
