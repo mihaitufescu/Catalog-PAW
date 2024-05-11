@@ -1,0 +1,13 @@
+CatalogOnline/CatalogOnline/appsettings.json
+CatalogOnline/CatalogOnline/Migrations
+
+*
+
+!.gitignore
+!.gitattributes
+
+!**/
+
+!*.cs
+!*.js
+!*.cshtml
