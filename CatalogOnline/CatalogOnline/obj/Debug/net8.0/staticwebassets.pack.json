@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\wwwroot\\css\\table.css",
+      "PackagePath": "staticwebassets\\css\\table.css"
+    },
+    {
       "Id": "C:\\Users\\mihai\\Documents\\GitHub\\Catalog-PAW\\CatalogOnline\\CatalogOnline\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

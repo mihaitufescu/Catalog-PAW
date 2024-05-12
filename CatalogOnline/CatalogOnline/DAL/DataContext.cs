@@ -12,12 +12,14 @@ namespace CatalogOnline.DAL
         }
 
         public DbSet<User> User { get; set; }
-
-       public DbSet<Course> Course { get; set; }
+        public DbSet<Course> Course { get; set; }
+        public DbSet<Grade> Grade { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+           
         }
     }
 }

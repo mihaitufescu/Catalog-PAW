@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
 
 namespace CatalogOnline.DAL.DBO
 {
@@ -8,10 +8,8 @@ namespace CatalogOnline.DAL.DBO
     {
         public User()
         {
-            //CourseAttendance = new List<CourseAttendance>();
-            //Notifications = new List<Notifications>();
-            //Grades = new List<Grades>();
         }
+
         [Key]
         public int user_id { get; set; }
 
@@ -26,6 +24,7 @@ namespace CatalogOnline.DAL.DBO
         [Required]
         [Column(TypeName = "nvarchar(255)")]
         public string email { get; set; }
+
         [Required]
         [Column(TypeName = "nvarchar(255)")]
         public string password { get; set; }

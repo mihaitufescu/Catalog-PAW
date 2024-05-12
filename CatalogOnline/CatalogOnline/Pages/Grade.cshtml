@@ -1,0 +1,32 @@
+﻿@page
+@model CatalogOnline.Pages.GradePageModel
+@{
+    ViewData["Title"] = "Grades";
+}
+<title>@ViewData["Title"]</title>
+<h1 class="text-center">Course List</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Score</th>
+            <th>Type of exam</th>
+            <th>Percentage</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in Model.Grades)
+        {
+            <tr>
+                <td>@grade.score</td>
+                <td>@grade.type_of_exam</td>
+                <td>@grade.percentage</td>
+                <td>
+                    <button type="button" class="btn btn-update btn-spacing">Update</button>
+                    <button type="button" class="btn btn-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-success mb-2">Add New Grade</button>

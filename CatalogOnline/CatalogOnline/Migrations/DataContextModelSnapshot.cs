@@ -21,6 +21,61 @@ namespace CatalogOnline.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CatalogOnline.DAL.DBO.Course", b =>
+                {
+                    b.Property<int>("course_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("course_id"));
+
+                    b.Property<int>("credits_number")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("mandatory")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("year")
+                        .HasColumnType("int");
+
+                    b.HasKey("course_id");
+
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("CatalogOnline.DAL.DBO.Grade", b =>
+                {
+                    b.Property<int>("grade_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("grade_id"));
+
+                    b.Property<int>("course_id")
+                        .HasColumnType("int");
+
+                    b.Property<double>("percentage")
+                        .HasColumnType("float");
+
+                    b.Property<double>("score")
+                        .HasColumnType("float");
+
+                    b.Property<string>("type_of_exam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("user_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("grade_id");
+
+                    b.ToTable("Grade");
+                });
+
             modelBuilder.Entity("CatalogOnline.DAL.DBO.User", b =>
                 {
                     b.Property<int>("user_id")

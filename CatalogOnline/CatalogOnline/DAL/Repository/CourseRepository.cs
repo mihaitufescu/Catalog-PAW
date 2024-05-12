@@ -16,7 +16,7 @@ namespace CatalogOnline.DAL.Repository
 
         public List<Course> GetAllCourses()
         {
-            return _context.Course.ToList();
+            return _context.Course.OrderBy(p => p.course_id).ToList();
         }
 
         public Course GetCourseById(int courseId)

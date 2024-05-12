@@ -18,6 +18,10 @@ namespace CatalogOnline.Mappings
                 .ForMember(dest => dest.credits_number, opt => opt.MapFrom(src => src.credits_number))
                 .ForMember(dest => dest.year, opt => opt.MapFrom(src => src.year));
 
+            CreateMap<Grade, GradeModel>()
+                .ForMember(dest => dest.score, opt => opt.MapFrom(src => src.score))
+                .ForMember(dest => dest.type_of_exam, opt => opt.MapFrom(src => src.type_of_exam))
+                .ForMember(dest => dest.percentage, opt => opt.MapFrom(src => src.percentage));
         }
     }
 }
