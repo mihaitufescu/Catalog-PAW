@@ -15,6 +15,7 @@ namespace CatalogOnline.DAL
         public DbSet<Course> Course { get; set; }
         public DbSet<Grade> Grade { get; set; }
 
+       public DbSet<Enrollment> Enrollment { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

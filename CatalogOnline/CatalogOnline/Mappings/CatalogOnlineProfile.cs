@@ -22,6 +22,12 @@ namespace CatalogOnline.Mappings
                 .ForMember(dest => dest.score, opt => opt.MapFrom(src => src.score))
                 .ForMember(dest => dest.type_of_exam, opt => opt.MapFrom(src => src.type_of_exam))
                 .ForMember(dest => dest.percentage, opt => opt.MapFrom(src => src.percentage));
+
+            CreateMap<Enrollment, EnrollmentModel>()
+                .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.user_id))
+                .ForMember(dest => dest.course_id, opt => opt.MapFrom(src => src.course_id))
+                .ForMember(dest => dest.joined_since, opt => opt.MapFrom(src => src.joined_since));
+
         }
     }
 }

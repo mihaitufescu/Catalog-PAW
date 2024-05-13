@@ -1,0 +1,30 @@
+﻿@page
+@model CatalogOnline.Pages.EnrollmentPageModel
+@{
+}
+<h1 class="text-center">Enrollment List</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Course ID</th>
+            <th>Joined Since</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in Model.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.user_id</td>
+                <td>@enrollment.course_id</td>
+                <td>@enrollment.joined_since.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <button type="button" class="btn btn-update btn-spacing">Update</button>
+                    <button type="button" class="btn btn-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-success mb-2">Add New Enrollment</button>

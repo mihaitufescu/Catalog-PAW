@@ -25,6 +25,10 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddScoped<IGradeService, GradeService>();
 
+builder.Services.AddScoped<IEnrollmentRepository,  EnrollmentRepository>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+
+
 var app = builder.Build();
 
 
