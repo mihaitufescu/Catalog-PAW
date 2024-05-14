@@ -28,6 +28,18 @@ namespace CatalogOnline.Mappings
                 .ForMember(dest => dest.course_id, opt => opt.MapFrom(src => src.course_id))
                 .ForMember(dest => dest.joined_since, opt => opt.MapFrom(src => src.joined_since));
 
+            CreateMap<Notification, NotificationModel>()
+                .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.user_id))
+                .ForMember(dest => dest.date, opt => opt.MapFrom(src => src.date))
+                .ForMember(dest => dest.message, opt => opt.MapFrom(src => src.message));
+
+            CreateMap<Document, DocumentModel>()
+                .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.user_id))
+                .ForMember(dest => dest.title, opt => opt.MapFrom(src => src.title))
+                .ForMember(dest => dest.description, opt => opt.MapFrom(src => src.description))
+                .ForMember(dest => dest.date, opt => opt.MapFrom(src => src.date))
+                .ForMember(dest => dest.type, opt => opt.MapFrom(src => src.type))
+                .ForMember(dest => dest.location, opt => opt.MapFrom(src => src.location)); 
         }
     }
 }

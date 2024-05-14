@@ -1,0 +1,35 @@
+﻿@page
+@model CatalogOnline.Pages.DocumentPageModel
+@{
+    ViewData["Title"] = "Documents";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var document in Model.Documents)
+        {
+            <tr>
+                <td>@document.title</td>
+                <td>@document.type</td>
+                <td>@document.date.ToString("yyyy-MM-dd")</td>
+                <td>@document.description</td>
+                <td>@document.location</td>
+                <td>
+                    <button type="button" class="btn btn-update btn-spacing">Update</button>
+                    <button type="button" class="btn btn-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
