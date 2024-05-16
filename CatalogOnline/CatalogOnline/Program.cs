@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using CatalogOnline.DAL;
 using CatalogOnline.Services.Interfaces;
 using CatalogOnline.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,12 @@ builder.Services.AddDbContext<CatalogOnline.DAL.DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<DataContext>();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.LoginPath = "/Authentification/Login";
+        options.AccessDeniedPath = "/Authentification/Forbidden";
+    });
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
@@ -33,6 +39,8 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 
 builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
