@@ -79,5 +79,11 @@ namespace CatalogOnline.Pages.Authentification
             return Page();
         }
 
+        public async Task<IActionResult> OnPostLogoutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToPage("/Authentification/Login");
+        }
+
     }
 }
