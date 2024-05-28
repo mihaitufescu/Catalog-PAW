@@ -5,8 +5,12 @@
 }
 
 <h1>Edit User</h1>
-
+@if (TempData["PasswordMessage"] != null)
+{
+    <div class="alert alert-info">@TempData["PasswordMessage"]</div>
+}
 <form method="post">
+    <input type="hidden" asp-for="User.user_id" />
     <div class="form-group">
         <label asp-for="User.username"></label>
         <input asp-for="User.username" class="form-control" />
@@ -18,13 +22,12 @@
     <div class="form-group">
         <label asp-for="User.email"></label>
         <input asp-for="User.email" class="form-control" />
+        <span class="text-danger" asp-validation-for="User.email"></span>
     </div>
-    <!--
     <div class="form-group">
         <label asp-for="User.password"></label>
         <input asp-for="User.password" type="password" class="form-control" />
     </div>
-    -->
     <div class="form-group">
         <label asp-for="User.role"></label>
         <input asp-for="User.role" class="form-control" />

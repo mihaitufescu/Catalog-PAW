@@ -47,6 +47,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Document">Document</a>
                         </li>
                     </ul>
+                    @if (!string.IsNullOrEmpty(User.Identity.Name))
+                    {
+                        <form class="form-inline my-2 my-lg-0" asp-page-handler="Logout" method="post">
+                            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                        </form>
+                    }
                 </div>
             </div>
         </nav>

@@ -29,16 +29,23 @@ namespace CatalogOnline.DAL.Repository
             return _context.User.Find(id);
         }
 
-        public void AddUser(User user)
+        public async Task<bool> AddUser(User user)
         {
             _context.User.Add(user);
-            _context.SaveChanges();
+            var res = await _context.SaveChangesAsync();
+            return res > 0;
         }
 
-        public void UpdateUser(User user)
+        public async Task<bool> UpdateUser(User user)
         {
+            var existingUser = _context.User.Local.FirstOrDefault(u => u.user_id == user.user_id);
+            if (existingUser != null)
+            {
+                _context.Entry(existingUser).State = EntityState.Detached;
+            }
+
             _context.User.Update(user);
-            _context.SaveChanges();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public void DeleteUser(int id)

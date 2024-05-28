@@ -8,8 +8,8 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         User GetUserByName(string name);
         List<User> GetUsers();
         User GetUserById(int id);  
-        void AddUser(User user);  
-        void UpdateUser(User user);  
+        Task<bool> AddUser(User user);
+        Task<bool> UpdateUser(User user);  
         void DeleteUser(int id);  
     }
 }

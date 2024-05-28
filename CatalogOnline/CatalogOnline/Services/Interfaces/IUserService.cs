@@ -9,8 +9,8 @@ namespace CatalogOnline.Services.Interfaces
         UserModel GetUserByName(string name);
         List<UserModel> GetUsers();
         User GetUserById(int id); 
-        void AddUser(User user);  
-        void UpdateUser(User user);
+        Task<bool> AddUser(User user);
+        Task<bool> UpdateUser(User user);
         void DeleteUser(int id);  
     }
 }

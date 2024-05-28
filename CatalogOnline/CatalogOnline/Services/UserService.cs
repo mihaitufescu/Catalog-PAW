@@ -35,14 +35,16 @@ namespace CatalogOnline.Services
             return _userRepository.GetUserById(id);
         }
 
-        public void AddUser(User user)
+        public async Task<bool> AddUser(User user)
         {
-            _userRepository.AddUser(user);
+            var res = await _userRepository.AddUser(user);
+            return res;
         }
 
-        public void UpdateUser(User user)
+        public async Task<bool> UpdateUser(User user)
         {
-            _userRepository.UpdateUser(user);
+            var res = await _userRepository.UpdateUser(user);
+            return res;
         }
 
         public void DeleteUser(int id)
