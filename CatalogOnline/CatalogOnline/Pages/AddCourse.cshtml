@@ -1,0 +1,36 @@
+﻿@page
+@model CatalogOnline.Pages.AddCourseModel
+@{
+    ViewData["Title"] = "Add New Course";
+
+}
+
+<h1>Add New Course</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Course.Subject">Subject</label>
+        <input asp-for="Course.Subject" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.Subject"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Course.Mandatory">Mandatory</label>
+        <select asp-for="Course.Mandatory" class="form-control">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Course.Mandatory"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Course.CreditsNumber">CreditNumber</label>
+        <input asp-for="Course.CreditsNumber" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.CreditsNumber"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Course.Year">Year</label>
+        <input asp-for="Course.Year" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.Year"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Add Course</button>
+</form>

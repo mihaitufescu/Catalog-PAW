@@ -26,10 +26,9 @@ namespace CatalogOnline.Services
         }
 
 
-        public CourseModel GetCourseById(int courseId)
+        public Course GetCourseById(int courseId)
         {
-            var course = _courseRepository.GetCourseById(courseId);
-            return _mapper.Map<CourseModel>(course);
+            return _courseRepository.GetCourseById(courseId);
         }
 
         public List<CourseModel> GetCoursesBySubject(string subject)
@@ -43,24 +42,25 @@ namespace CatalogOnline.Services
             var courses = _courseRepository.GetCoursesByYear(year);
             return _mapper.Map<List<CourseModel>>(courses);
         }
-
-        /*
-        public void AddCourse(CourseModel courseModel)
+        
+        public async Task<bool> AddCourse(Course course)
         {
-            var course = _mapper.Map<Course>(courseModel);
-            _courseRepository.AddCourse(course);
+            var res = await _courseRepository.AddCourse(course);
+            return res;
         }
 
-        public void UpdateCourse(CourseModel courseModel)
+        public async Task<bool> UpdateCourse(Course course)
         {
-            var course = _mapper.Map<Course>(courseModel);
-            _courseRepository.UpdateCourse(course);
+            var res = await _courseRepository.UpdateCourse(course);
+            return res;
         }
 
         public void DeleteCourse(int courseId)
         {
             _courseRepository.DeleteCourse(courseId);
         }
-        */
+
+
+
     }
 }

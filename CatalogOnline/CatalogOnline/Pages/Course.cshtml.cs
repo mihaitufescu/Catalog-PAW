@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.Services.Interfaces;
 using System.Collections.Generic;
+using CatalogOnline.Services;
 
 namespace CatalogOnline.Pages
 {
@@ -22,6 +23,13 @@ namespace CatalogOnline.Pages
         public void OnGet()
         {
             Courses = _courseService.GetAllCourses(); 
+        }
+
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            _courseService.DeleteCourse(id);
+            return RedirectToPage();
         }
     }
 }

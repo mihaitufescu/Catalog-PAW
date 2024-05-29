@@ -1,0 +1,32 @@
+﻿@page "{id:int}"
+@model CatalogOnline.Pages.EditCourseModel
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<h1>Edit Course</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Course.course_id" />
+    <div class="form-group">
+        <label asp-for="Course.subject"></label>
+        <input asp-for="Course.subject" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Course.mandatory"></label>
+        <select asp-for="Course.mandatory" class="form-control">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Course.credits_number"></label>
+        <input asp-for="Course.credits_number" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Course.year"></label>
+        <input asp-for="Course.year" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+<a asp-page="./Course" class="btn btn-secondary">Cancel</a>
