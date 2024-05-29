@@ -22,11 +22,14 @@
                 <td>@grade.type_of_exam</td>
                 <td>@grade.percentage</td>
                 <td>
-                    <button type="button" class="btn btn-update btn-spacing">Update</button>
-                    <button type="button" class="btn btn-delete">Delete</button>
+                    <a asp-page="./EditGrade" asp-route-id="@grade.grade_id" class="btn btn-update btn-spacing">Update</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@grade.grade_id" onsubmit="return confirm('Are you sure you want to delete this grade?');" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<button type="button" class="btn btn-success mb-2">Add New Grade</button>
+<a href="/AddGrade" class="btn btn-success mb-2">Add New Grade</a>
+

@@ -19,13 +19,13 @@ namespace CatalogOnline.Services
             _courseRepository = courseRepository;
         }
 
-        public List<CourseModel> GetAllCourses()
+        public List<CourseModel> GetAllCourseModels()
         {
             var courses = _courseRepository.GetAllCourses();
             return _mapper.Map<List<CourseModel>>(courses); 
         }
 
-
+        
         public Course GetCourseById(int courseId)
         {
             return _courseRepository.GetCourseById(courseId);
@@ -60,7 +60,9 @@ namespace CatalogOnline.Services
             _courseRepository.DeleteCourse(courseId);
         }
 
-
-
+        List<Course> ICourseService.GetAllCourses()
+        {
+           return _courseRepository.GetAllCourses();
+        }
     }
 }

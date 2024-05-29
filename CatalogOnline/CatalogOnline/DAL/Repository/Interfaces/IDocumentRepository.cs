@@ -1,15 +1,16 @@
 ﻿using CatalogOnline.DAL.DBO;
-using System.Reflection.Metadata;
-using Document = CatalogOnline.DAL.DBO.Document;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CatalogOnline.DAL.Repository.Interfaces
 {
     public interface IDocumentRepository
     {
+        List<Document> GetDocuments();
 
-        public List<Document> GetDocuments();
-
-        public Document GetDocument(int id);
-        
+        Document GetDocumentById(int id);
+        Task<bool> AddDocument(Document document);
+        Task<bool> UpdateDocument(Document document);
+        void DeleteDocument(int id);
     }
 }

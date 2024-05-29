@@ -17,5 +17,11 @@ namespace CatalogOnline.Pages
         {
             Grades = _gradeService.GetAllGrades();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            _gradeService.DeleteGrade(id);
+            return RedirectToPage();
+        }
     }
 }

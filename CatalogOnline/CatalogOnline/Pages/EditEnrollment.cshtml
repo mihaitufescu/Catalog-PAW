@@ -1,0 +1,46 @@
+﻿@page "{id:int}"
+@model CatalogOnline.Pages.EditEnrollmentModel
+@{
+    ViewData["Title"] = "Edit Enrollment";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="Enrollment.enrollment_id" />
+    <div class="form-group">
+        <label asp-for="Enrollment.user_id">Student</label>
+        <select asp-for="Enrollment.user_id" class="form-control">
+            @foreach (var student in Model.Students)
+            {
+                <option value="@student.user_id">@student.username</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Enrollment.user_id"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Enrollment.course_id">Course</label>
+        <select asp-for="Enrollment.course_id" class="form-control">
+            @foreach (var course in Model.Courses)
+            {
+                <option value="@course.course_id">@course.subject</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Enrollment.course_id"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Enrollment.joined_since">Joined Since</label>
+        <input asp-for="Enrollment.joined_since" class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" />
+        <span class="text-danger" asp-validation-for="Enrollment.joined_since"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+
+@if (ModelState.ContainsKey("EditEnrollmentError"))
+{
+    <div class="text-danger mt-2">
+        @ModelState["EditEnrollmentError"].Errors[0].ErrorMessage
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

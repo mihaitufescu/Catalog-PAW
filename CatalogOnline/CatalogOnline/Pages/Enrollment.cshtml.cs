@@ -22,5 +22,11 @@ namespace CatalogOnline.Pages
         {
             Enrollments = _enrollmentService.GetAllEnrollments();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            _enrollmentService.DeleteEnrollment(id);
+            return RedirectToPage();
+        }
     }
 }

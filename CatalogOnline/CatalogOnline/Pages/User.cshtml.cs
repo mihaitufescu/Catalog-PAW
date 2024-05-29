@@ -20,7 +20,7 @@ namespace CatalogOnline.Pages
 
         public void OnGet()
         {
-            Users = _usersService.GetUsers();
+            Users = _usersService.GetUserModels();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)

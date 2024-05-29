@@ -11,6 +11,7 @@
     <div class="form-group">
         <label asp-for="Course.subject"></label>
         <input asp-for="Course.subject" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.subject"></span>
     </div>
     <div class="form-group">
         <label asp-for="Course.mandatory"></label>
@@ -18,15 +19,22 @@
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
+        <span class="text-danger" asp-validation-for="Course.mandatory"></span>
     </div>
     <div class="form-group">
         <label asp-for="Course.credits_number"></label>
         <input asp-for="Course.credits_number" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.credits_number"></span>
     </div>
     <div class="form-group">
         <label asp-for="Course.year"></label>
         <input asp-for="Course.year" class="form-control" />
+        <span class="text-danger" asp-validation-for="Course.year"></span>
     </div>
     <button type="submit" class="btn btn-success">Save Changes</button>
 </form>
 <a asp-page="./Course" class="btn btn-secondary">Cancel</a>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

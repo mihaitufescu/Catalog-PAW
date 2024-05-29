@@ -1,9 +1,9 @@
-using CatalogOnline.DAL.DBO;  
 using CatalogOnline.Models;
+using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using CatalogOnline.Services.Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
 {
@@ -21,6 +21,12 @@ namespace CatalogOnline.Pages
         public void OnGet()
         {
             Documents = _documentService.GetDocuments();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            _documentService.DeleteDocument(id);
+            return RedirectToPage();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,17 +34,12 @@ namespace CatalogOnline.DAL.Repository
         {
             return _context.Course.Where(c => c.year == year).ToList();
         }
-        /*
-        public void AddCourse(Course course)
+        
+        public async Task<bool> AddCourse(Course course)
         {
             _context.Course.Add(course);
-            _context.SaveChanges();
-        }
-
-        public void UpdateCourse(Course course)
-        {
-            _context.Course.Update(course);
-            _context.SaveChanges();
+            var res = await _context.SaveChangesAsync();
+            return res > 0;
         }
 
         public void DeleteCourse(int courseId)
@@ -55,6 +51,17 @@ namespace CatalogOnline.DAL.Repository
                 _context.SaveChanges();
             }
         }
-        */
+
+        public async Task<bool> UpdateCourse(Course course)
+        {
+            var existingCourse = _context.Course.Local.FirstOrDefault(c => c.course_id == course.course_id);
+            if (existingCourse != null)
+            {
+                _context.Entry(existingCourse).State = EntityState.Detached;
+            }
+
+            _context.Course.Update(course);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

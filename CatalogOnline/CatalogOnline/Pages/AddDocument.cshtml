@@ -1,0 +1,57 @@
+﻿@page
+@model CatalogOnline.Pages.AddDocumentModel
+@{
+    ViewData["Title"] = "Add Document";
+}
+<h1>Add Document</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Document.user_id">User ID</label>
+        <input list="users" asp-for="Document.user_id" class="form-control" />
+        <datalist id="users">
+            @foreach (var user in Model.Users)
+            {
+                <option value="@user.user_id">@user.username</option>
+            }
+        </datalist>
+        <span asp-validation-for="Document.user_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Document.title">Title</label>
+        <input asp-for="Document.title" class="form-control" />
+        <span asp-validation-for="Document.title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Document.description">Description</label>
+        <input asp-for="Document.description" class="form-control" />
+        <span asp-validation-for="Document.description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Document.date">Date</label>
+        <input asp-for="Document.date" class="form-control" type="date" />
+        <span asp-validation-for="Document.date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Document.type">Type</label>
+        <input asp-for="Document.type" class="form-control" />
+        <span asp-validation-for="Document.type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Document.location">Location</label>
+        <input asp-for="Document.location" class="form-control" />
+        <span asp-validation-for="Document.location" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Add Document</button>
+</form>
+
+@if (ModelState.ContainsKey("AddDocumentError"))
+{
+    <div class="text-danger mt-2">
+        @ModelState["AddDocumentError"].Errors[0].ErrorMessage
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

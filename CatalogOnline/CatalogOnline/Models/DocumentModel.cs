@@ -2,6 +2,8 @@
 {
     public class DocumentModel
     {
+
+        public int document_id { get; set; }
         public int user_id { get; set; }
 
         public string type { get; set; }

@@ -9,11 +9,10 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         Course GetCourseById(int courseId);
         List<Course> GetCoursesBySubject(string subject);
         List<Course> GetCoursesByYear(int year);
-       /*
-        void AddCourse(Course course);
-        void UpdateCourse(Course course);
+        Task<bool> AddCourse(Course course);
+        Task<bool> UpdateCourse(Course course);
         void DeleteCourse(int courseId);
-       */
+
         
     }
 }

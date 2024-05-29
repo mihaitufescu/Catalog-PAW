@@ -22,7 +22,7 @@ namespace CatalogOnline.Pages
 
         public void OnGet()
         {
-            Courses = _courseService.GetAllCourses(); 
+            Courses = _courseService.GetAllCourseModels(); 
         }
 
 

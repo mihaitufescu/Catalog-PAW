@@ -18,13 +18,15 @@
             <tr>
                 <td>@enrollment.user_id</td>
                 <td>@enrollment.course_id</td>
-                <td>@enrollment.joined_since.ToString("yyyy-MM-dd")</td>
+                <td>@enrollment.joined_since.ToString("dd-MM-yyyy")</td>
                 <td>
-                    <button type="button" class="btn btn-update btn-spacing">Update</button>
-                    <button type="button" class="btn btn-delete">Delete</button>
+                    <a asp-page="./EditEnrollment" asp-route-id="@enrollment.enrollment_id" class="btn btn-update btn-spacing">Update</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@enrollment.enrollment_id" onsubmit="return confirm('Are you sure you want to delete this enrollment?');" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<button type="button" class="btn btn-success mb-2">Add New Enrollment</button>
+<a href="/AddEnrollment" class="btn btn-success mb-2">Add New Enrollment</a>

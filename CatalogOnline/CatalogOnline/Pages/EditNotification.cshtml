@@ -1,0 +1,44 @@
+﻿@page "{id:int}"
+@model CatalogOnline.Pages.EditNotificationModel
+@{
+    TempData["Title"] = "Edit Notification";
+}
+<h1>Edit Notification</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Notification.notification_id" />
+    <div class="form-group">
+        <label asp-for="Notification.user_id">User ID</label>
+        <input list="users" asp-for="Notification.user_id" class="form-control" />
+        <datalist id="users">
+            @foreach (var user in Model.Users)
+            {
+                <option value="@user.user_id">@user.username</option>
+            }
+        </datalist>
+        <span asp-validation-for="Notification.user_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Notification.message">Message</label>
+        <input asp-for="Notification.message" class="form-control" />
+        <span asp-validation-for="Notification.message" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notification.date">Created At</label>
+        <input asp-for="Notification.date" class="form-control" type="date" />
+        <span asp-validation-for="Notification.date" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+
+@if (ModelState.ContainsKey("EditNotificationError"))
+{
+    <div class="text-danger mt-2">
+        @ModelState["EditNotificationError"].Errors[0].ErrorMessage
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

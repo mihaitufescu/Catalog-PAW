@@ -29,6 +29,11 @@ namespace CatalogOnline.DAL.Repository
             return _context.User.Find(id);
         }
 
+        public List<User> GetAllStudent()
+        {
+            return _context.User.Where(u => u.role == "student").ToList();
+        }
+
         public async Task<bool> AddUser(User user)
         {
             _context.User.Add(user);
@@ -57,5 +62,11 @@ namespace CatalogOnline.DAL.Repository
                 _context.SaveChanges();
             }
         }
+
+        public async Task<bool> UserExists(int userId)
+        {
+            return await _context.User.AnyAsync(u => u.user_id == userId);
+        }
+
     }
 }

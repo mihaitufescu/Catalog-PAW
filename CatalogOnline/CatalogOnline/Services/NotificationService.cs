@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CatalogOnline.Services
 {
@@ -16,16 +19,35 @@ namespace CatalogOnline.Services
             _notificationRepository = notificationRepository;
         }
 
-        public List<NotificationModel> GetAllNotifications()
+        public async Task<bool> AddNotification(Notification notification)
         {
-            var courses = _notificationRepository.GetNotifications();
-            return _mapper.Map<List<NotificationModel>>(courses);
+            return await _notificationRepository.AddNotification(notification);
         }
 
-
-        List<NotificationModel> INotificationService.GetCoursesByMessage(string message)
+        public List<NotificationModel> GetAllNotificationModels()
         {
-            throw new NotImplementedException();
+            var notifications = _mapper.Map<List<NotificationModel>>(_notificationRepository.GetNotifications());
+            return notifications;
+        }
+
+        public List<Notification> GetAllNotifications()
+        {
+            return _notificationRepository.GetNotifications();
+        }
+
+        public Notification GetNotificationById(int id)
+        {
+            return _notificationRepository.GetNotificationById(id);
+        }
+
+        public async Task<bool> UpdateNotification(Notification notification)
+        {
+            return await _notificationRepository.UpdateNotification(notification);
+        }
+
+        public void DeleteNotification(int id)
+        {
+             _notificationRepository.DeleteNotification(id);
         }
     }
 }

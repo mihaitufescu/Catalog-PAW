@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model CatalogOnline.Pages.EditGradeModel
+@{
+    ViewData["Title"] = "Edit Grade";
+}
+
+<h1>Edit Grade</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Grade.grade_id" />
+    <div class="form-group">
+        <label asp-for="Grade.score">Score</label>
+        <input asp-for="Grade.score" class="form-control" />
+        <span class="text-danger" asp-validation-for="Grade.score"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Grade.type_of_exam">Type of Exam</label>
+        <input asp-for="Grade.type_of_exam" class="form-control" />
+        <span class="text-danger" asp-validation-for="Grade.type_of_exam"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Grade.percentage">Percentage</label>
+        <input asp-for="Grade.percentage" class="form-control" />
+        <span class="text-danger" asp-validation-for="Grade.percentage"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Grade.user_id">Student</label>
+        <select asp-for="Grade.user_id" class="form-control">
+            @foreach (var student in Model.Students)
+            {
+                <option value="@student.user_id">@student.username</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Grade.user_id"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Grade.course_id">Course</label>
+        <select asp-for="Grade.course_id" class="form-control">
+            @foreach (var course in Model.Courses)
+            {
+                <option value="@course.course_id">@course.subject</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Grade.course_id"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+<a asp-page="./Grades" class="btn btn-secondary">Cancel</a>
+
+@if (ModelState.ContainsKey("EditGradeError"))
+{
+    <div class="text-danger mt-2">
+        @ModelState["EditGradeError"].Errors[0].ErrorMessage
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -27,10 +27,13 @@
                 <td>@document.description</td>
                 <td>@document.location</td>
                 <td>
-                    <button type="button" class="btn btn-update btn-spacing">Update</button>
-                    <button type="button" class="btn btn-delete">Delete</button>
+                    <a asp-page="./EditDocument" asp-route-id="@document.document_id" class="btn btn-update btn-spacing">Update</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@document.document_id" onsubmit="return confirm('Are you sure you want to delete this document?');" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a href="/AddDocument" class="btn btn-success mb-2">Add New Student</a>
