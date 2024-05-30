@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,15 @@ namespace CatalogOnline.Pages
 {
     public class EditDocumentModel : PageModel
     {
-        private readonly ILogger<EditDocumentModel> _logger;
-        private readonly IDocumentService _documentService;
-        private readonly IUserService _userService;
+        private readonly ILogger<EditDocumentModel> logger;
+        private readonly IDocumentRepository documentRepository;
+        private readonly IUserRepository userRepository;
 
-        public EditDocumentModel(IDocumentService documentService, IUserService userService, ILogger<EditDocumentModel> logger)
+        public EditDocumentModel(IDocumentRepository _documentRepository, IUserRepository _userRepository, ILogger<EditDocumentModel> _logger)
         {
-            _documentService = documentService;
-            _userService = userService;
-            _logger = logger;
+            documentRepository = _documentRepository;
+            userRepository = _userRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var document = _documentService.GetDocumentById(id);
+            var document = documentRepository.GetDocumentById(id);
             if (document == null)
             {
                 return NotFound();
@@ -46,7 +47,7 @@ namespace CatalogOnline.Pages
                 location = document.location
             };
 
-            Users = _userService.GetAllUsers();
+            Users = userRepository.GetAllUsers();
             return Page();
         }
 
@@ -54,7 +55,7 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !await IsValidDocument(Document))
             {
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -69,11 +70,11 @@ namespace CatalogOnline.Pages
                 location = Document.location
             };
 
-            var res = await _documentService.UpdateDocument(updatedDocument);
-            if (!res)
+            var res =  documentRepository.UpdateDocument(updatedDocument);
+            if (res is null)
             {
                 ModelState.AddModelError("EditDocumentError", "Failed to update document");
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -84,7 +85,7 @@ namespace CatalogOnline.Pages
         {
             bool isValid = true;
 
-            if (document.user_id <= 0 || !await _userService.UserExists(document.user_id))
+            if (document.user_id <= 0 || !await userRepository.UserExists(document.user_id))
             {
                 ModelState.AddModelError("Document.user_id", "User ID must be greater than 0 and must exist.");
                 isValid = false;

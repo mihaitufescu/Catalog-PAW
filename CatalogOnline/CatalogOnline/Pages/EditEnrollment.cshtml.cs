@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +12,18 @@ namespace CatalogOnline.Pages
 {
     public class EditEnrollmentModel : PageModel
     {
-        private readonly ILogger<EditEnrollmentModel> _logger;
-        private readonly IEnrollmentService _enrollmentService;
-        private readonly IUserService _userService;
-        private readonly ICourseService _courseService;
+        private readonly ILogger<EditEnrollmentModel> logger;
+        private readonly IEnrollmentRepository enrollmentRepository;
+        private readonly IUserRepository userRepository;
+        private readonly ICourseRepository courseRepository;
 
-        public EditEnrollmentModel(IEnrollmentService enrollmentService, IUserService userService, ICourseService courseService, ILogger<EditEnrollmentModel> logger)
+        public EditEnrollmentModel(IEnrollmentRepository _enrollmentRepository, IUserRepository _userRepository,
+            ICourseRepository _courseRepository, ILogger<EditEnrollmentModel> _logger)
         {
-            _enrollmentService = enrollmentService;
-            _userService = userService;
-            _courseService = courseService;
-            _logger = logger;
+            enrollmentRepository = _enrollmentRepository;
+            userRepository = _userRepository;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -32,7 +34,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var enrollment = _enrollmentService.GetEnrollmentById(id);
+            var enrollment = enrollmentRepository.GetEnrollmentById(id);
             if (enrollment == null)
             {
                 return NotFound();
@@ -46,8 +48,8 @@ namespace CatalogOnline.Pages
                 joined_since = enrollment.joined_since
             };
 
-            Students = _userService.GetAllStudents();
-            Courses = _courseService.GetAllCourses();
+            Students = userRepository.GetAllStudents();
+            Courses = courseRepository.GetAllCourses();
 
             return Page();
         }
@@ -56,8 +58,8 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidEnrollment(Enrollment))
             {
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 
@@ -69,12 +71,12 @@ namespace CatalogOnline.Pages
                 joined_since = Enrollment.joined_since
             };
 
-            var res =  _enrollmentService.UpdateEnrollment(updatedEnrollment);
-            if (!res)
+            var res =  enrollmentRepository.UpdateEnrollment(updatedEnrollment);
+            if (res is null)
             {
                 ModelState.AddModelError("EditEnrollmentError", "Failed to update enrollment");
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 

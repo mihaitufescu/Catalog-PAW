@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services;
 using CatalogOnline.Services.Interfaces;
@@ -9,24 +10,27 @@ namespace CatalogOnline.Pages
 {
     public class NotificationsPageModel : PageModel
     {
-        private readonly INotificationService _notificationService;
+        private readonly INotificationService notificationService;
+
+        private readonly INotificationRepository notificationRepository;
 
         public List<NotificationModel> Notifications { get; set; }
 
-        public NotificationsPageModel(INotificationService notificationService)
+        public NotificationsPageModel(INotificationService _notificationService, INotificationRepository notificationRepository)
         {
-            _notificationService = notificationService;
+            notificationService = _notificationService;
+            this.notificationRepository = notificationRepository;
         }
 
         public void OnGet()
         {
-            Notifications = _notificationService.GetAllNotificationModels();
+            Notifications = notificationService.GetAllNotificationModels();
         }
 
         
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _notificationService.DeleteNotification(id);
+            notificationRepository.DeleteNotification(id);
             return RedirectToPage();
         }
     }

@@ -36,15 +36,14 @@ namespace CatalogOnline.DAL.Repository
         {
             return _context.Grade.Where(g => g.course_id == courseId).ToList();
         }
-
-        public async Task<bool> AddGrade(Grade grade)
+        
+        public void AddGrade(Grade grade)
         {
             _context.Grade.Add(grade);
-            var res = await _context.SaveChangesAsync();
-            return res > 0;
+            _context.SaveChanges();
         }
 
-        public async Task<bool> UpdateGrade(Grade grade)
+        public void UpdateGrade(Grade grade)
         {
             var existingGrade = _context.Grade.Local.FirstOrDefault(g => g.grade_id == grade.grade_id);
             if (existingGrade != null)
@@ -53,16 +52,30 @@ namespace CatalogOnline.DAL.Repository
             }
 
             _context.Grade.Update(grade);
-            return await _context.SaveChangesAsync() > 0;
+            _context.SaveChanges();
         }
 
-        public async Task<bool> DeleteGrade(int id)
+        public void DeleteGrade(int id)
+        {
+            var grade = _context.Grade.Find(id);
+            if (grade != null)
+            {
+                _context.Grade.Remove(grade);
+                _context.SaveChanges();
+            }
+
+        }
+
+
+
+        public async Task<bool> DeleteGradeAsync(int id)
         {
             var grade = await _context.Grade.FindAsync(id);
             if (grade != null)
             {
                 _context.Grade.Remove(grade);
-                return await _context.SaveChangesAsync() > 0;
+                await _context.SaveChangesAsync();
+                return true;
             }
             return false;
         }
@@ -72,23 +85,12 @@ namespace CatalogOnline.DAL.Repository
             return _context.Grade.Where(g => g.user_id == studentId).ToList();
         }
 
-        public List<Grade> GetGradesByStudentIdAndCourseId(int studentId, int courseId)
+        public List<Grade> GetGradesByStudentAndCourse(int studentId, int courseId)
         {
             return _context.Grade
                 .Where(g => g.user_id == studentId && g.course_id == courseId)
                 .ToList();
         }
-
-        void IGradeRepository.DeleteGrade(int id)
-        {
-            var grade = _context.Grade.Find(id);
-            if (grade != null)
-            {
-                _context.Grade.Remove(grade);
-                _context.SaveChanges();
-            }
-        }
-
 
     }
 }

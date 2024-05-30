@@ -9,10 +9,5 @@ namespace CatalogOnline.Services.Interfaces
     {
         List<DocumentModel> GetDocuments();
 
-        Document GetDocumentById(int id);
-
-        Task<bool> AddDocument(Document document);
-        Task<bool> UpdateDocument(Document document);
-        void DeleteDocument(int id);
     }
 }

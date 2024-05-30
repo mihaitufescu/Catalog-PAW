@@ -6,29 +6,32 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.Services.Interfaces;
 using System.Collections.Generic;
 using CatalogOnline.Services;
+using CatalogOnline.DAL.Repository.Interfaces;
 
 namespace CatalogOnline.Pages
 {
     public class CoursePageModel : PageModel 
     {
-        private readonly ICourseService _courseService;
+        private readonly ICourseRepository courseRepository;
+        private readonly ICourseService courseService;
 
-        public CoursePageModel(ICourseService courseService) 
+        public CoursePageModel(ICourseRepository _courseRepository, ICourseService _courseService) 
         {
-            _courseService = courseService;
+            courseRepository = _courseRepository;
+            courseService = _courseService;
         }
 
         public List<CourseModel> Courses { get; private set; }
 
         public void OnGet()
         {
-            Courses = _courseService.GetAllCourseModels(); 
+            Courses = courseService.GetAllCourseModels(); 
         }
 
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _courseService.DeleteCourse(id);
+            courseRepository.DeleteCourse(id);
             return RedirectToPage();
         }
     }

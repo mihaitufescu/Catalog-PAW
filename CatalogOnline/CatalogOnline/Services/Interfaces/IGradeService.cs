@@ -7,16 +7,11 @@ namespace CatalogOnline.Services.Interfaces
 {
     public interface IGradeService
     {
-        Grade GetGradeById(int gradeId);
-
         List<GradeModel> GetAllGrades();
-
         GradeModel GetGradeModelById(int gradeId);
+        List<GradeModel> GetGradesByCourseId(int courseId);
+        List<GradeModel> GetGradesByStudentAndCourse(int studentId, int courseId);
 
-        Task<bool> AddGrade(Grade grade);
 
-        Task<bool> UpdateGrade(Grade grade);
-
-        void DeleteGrade(int gradeId);
     }
 }

@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,15 @@ namespace CatalogOnline.Pages
 {
     public class AddDocumentModel : PageModel
     {
-        private readonly ILogger<AddDocumentModel> _logger;
-        private readonly IDocumentService _documentService;
-        private readonly IUserService _userService;
+        private readonly ILogger<AddDocumentModel> logger;
+        private readonly IDocumentRepository documentRepository;
+        private readonly IUserRepository userRepository;
 
-        public AddDocumentModel(IDocumentService documentService, IUserService userService, ILogger<AddDocumentModel> logger)
+        public AddDocumentModel(IDocumentRepository _documentRepository, IUserRepository _userRepository, ILogger<AddDocumentModel> _logger)
         {
-            _documentService = documentService;
-            _userService = userService;
-            _logger = logger;
+            documentRepository = _documentRepository;
+            userRepository = _userRepository;
+            _logger = _logger;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Users = _userService.GetAllUsers();
+            Users = userRepository.GetAllStudents();
             return Page();
         }
 
@@ -37,7 +38,7 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !await IsValidDocument(Document))
             {
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -51,11 +52,11 @@ namespace CatalogOnline.Pages
                 location = Document.location
             };
 
-            var res = await _documentService.AddDocument(newDocument);
+            var res = await documentRepository.AddDocument(newDocument);
             if (!res)
             {
                 ModelState.AddModelError("AddDocumentError", "Failed to add document");
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -66,7 +67,7 @@ namespace CatalogOnline.Pages
         {
             bool isValid = true;
 
-            if (document.user_id <= 0 || !await _userService.UserExists(document.user_id))
+            if (document.user_id <= 0 || !await userRepository.UserExists(document.user_id))
             {
                 ModelState.AddModelError("Document.user_id", "User ID must be greater than 0 and must exist.");
                 isValid = false;

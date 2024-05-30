@@ -5,19 +5,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MigraDocCore.DocumentObjectModel;
 using MigraDocCore.Rendering;
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 
 namespace CatalogOnline.Pages
 {
     [Authorize(Roles = "student")]
     public class RequestDocumentModel : PageModel
     {
-        private readonly IDocumentService _documentService;
-        private readonly IUserService _userService;
+        private readonly IDocumentRepository documentRepository;
+        private readonly IUserRepository userRepository;
 
-        public RequestDocumentModel(IDocumentService documentService, IUserService userService)
+        public RequestDocumentModel(IDocumentRepository _documentRepository, IUserRepository _userRepository)
         {
-            _documentService = documentService;
-            _userService = userService;
+            documentRepository = _documentRepository;
+            userRepository = _userRepository;
         }
 
         public IActionResult OnGet()
@@ -34,7 +35,7 @@ namespace CatalogOnline.Pages
                 return NotFound("User ID not found.");
             }
 
-            var user = _userService.GetUserById(int.Parse(userId));
+            var user = userRepository.GetUserById(int.Parse(userId));
 
             if (user == null)
             {
@@ -64,7 +65,7 @@ namespace CatalogOnline.Pages
                 location = $"/documents/{pdfFileName}" //Path to wwwroot
             };
 
-            _documentService.AddDocument(document);//Add the document to the database.
+            documentRepository.AddDocument(document);//Add the document to the database.
 
             return File(pdfContent, "application/pdf", pdfFileName);
         }

@@ -4,28 +4,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.Services.Interfaces;
 using System.Collections.Generic;
+using CatalogOnline.DAL.Repository.Interfaces;
 
 namespace CatalogOnline.Pages
 {
     public class EnrollmentPageModel : PageModel
     {
-        private readonly IEnrollmentService _enrollmentService;
+        private readonly IEnrollmentService enrollmentService;
+        private readonly IEnrollmentRepository enrollmentRepository;
 
-        public EnrollmentPageModel(IEnrollmentService enrollmentService)
+
+        public EnrollmentPageModel(IEnrollmentService _enrollmentService, IEnrollmentRepository _enrollmentRepository)
         {
-            _enrollmentService = enrollmentService;
+            enrollmentService = _enrollmentService;
+            enrollmentRepository = _enrollmentRepository;
         }
 
         public List<EnrollmentModel> Enrollments { get; private set; }
 
         public void OnGet()
         {
-            Enrollments = _enrollmentService.GetAllEnrollments();
+            Enrollments = enrollmentService.GetAllEnrollments();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _enrollmentService.DeleteEnrollment(id);
+            enrollmentRepository.DeleteEnrollment(id);
             return RedirectToPage();
         }
     }

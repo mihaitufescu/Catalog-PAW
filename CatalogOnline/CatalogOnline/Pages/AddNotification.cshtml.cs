@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,16 @@ namespace CatalogOnline.Pages
 {
     public class AddNotificationModel : PageModel
     {
-        private readonly ILogger<AddNotificationModel> _logger;
-        private readonly INotificationService _notificationService;
-        private readonly IUserService _userService;
+        private readonly ILogger<AddNotificationModel> logger;
+        private readonly INotificationRepository notificationRepository;
+        private readonly IUserRepository userRepository;
 
-        public AddNotificationModel(INotificationService notificationService, IUserService userService, ILogger<AddNotificationModel> logger)
+        public AddNotificationModel(INotificationRepository _notificationRepository, IUserRepository _userRepository,
+            ILogger<AddNotificationModel> _logger)
         {
-            _notificationService = notificationService;
-            _userService = userService;
-            _logger = logger;
+            notificationRepository = _notificationRepository;
+            userRepository = _userRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -30,7 +32,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Users = _userService.GetAllUsers();
+            Users = userRepository.GetAllUsers();
             return Page();
         }
 
@@ -38,7 +40,7 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidNotification(Notification))
             {
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -49,11 +51,11 @@ namespace CatalogOnline.Pages
                 date = Notification.date
             };
 
-            var res = await _notificationService.AddNotification(newNotification);
-            if (!res)
+            var res =  notificationRepository.AddNotification(newNotification);
+            if (res is null)
             {
                 ModelState.AddModelError("AddNotificationError", "Failed to add notification");
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 

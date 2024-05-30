@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,34 +10,35 @@ namespace CatalogOnline.Pages
 {
     public class EditGradeModel : PageModel
     {
-        private readonly IGradeService _gradeService;
-        private readonly IUserService _userService;
-        private readonly ICourseService _courseService;
-        private readonly ILogger<EditGradeModel> _logger;
+        private readonly IGradeRepository gradeRepository;
+        private readonly IUserRepository userRepository;
+        private readonly ICourseRepository courseRepository;
+        private readonly ILogger<EditGradeModel> logger;
 
         [BindProperty]
         public Grade Grade { get; set; }
         public List<User> Students { get; set; }
         public List<Course> Courses { get; set; }
 
-        public EditGradeModel(IGradeService gradeService, IUserService studentService, ICourseService courseService, ILogger<EditGradeModel> logger)
+        public EditGradeModel(IGradeRepository _gradeRepository, IUserRepository _studentRepository,
+            ICourseRepository _courseRepository, ILogger<EditGradeModel> _logger)
         {
-            _gradeService = gradeService;
-            _userService = studentService;
-            _courseService = courseService;
-            _logger = logger;
+            gradeRepository = _gradeRepository;
+            userRepository = _studentRepository;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         public IActionResult OnGet(int id)
         {
-            Grade = _gradeService.GetGradeById(id);
+            Grade = gradeRepository.GetGradeById(id);
             if (Grade == null)
             {
                 return NotFound();
             }
 
-            Students = _userService.GetAllStudents();
-            Courses = _courseService.GetAllCourses();
+            Students = userRepository.GetAllStudents();
+            Courses = courseRepository.GetAllCourses();
 
             return Page();
         }
@@ -45,19 +47,12 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidGrade(Grade))
             {
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 
-            var res = _gradeService.UpdateGrade(Grade);
-            if (res == null)
-            {
-                ModelState.AddModelError("EditGradeError", "Failed to update grade");
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
-                return Page();
-            }
+
 
             return RedirectToPage("Grade");
         }

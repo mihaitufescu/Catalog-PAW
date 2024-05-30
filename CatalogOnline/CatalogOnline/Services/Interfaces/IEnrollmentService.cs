@@ -9,13 +9,7 @@ namespace CatalogOnline.Services.Interfaces
 
         EnrollmentModel GetEnrollmentById(int id);
 
-        bool AddEnrollmentModel(EnrollmentModel enrollment);
-
-        bool AddEnrollment(Enrollment enrollment);
-
-        bool UpdateEnrollment(Enrollment enrollment);
-
-        void DeleteEnrollment(int id);
+        List<StudentCourseModel> GetStudentCoursesWithGrades(int studentId);
 
 
     }

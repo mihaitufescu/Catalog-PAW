@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models.AuthentificationModels;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,13 @@ namespace CatalogOnline.Pages
 {
     public class AddUserModel : PageModel
     {
-        private readonly IUserService _usersService;
-        private readonly ILogger<AddUserModel> _logger;
+        private readonly IUserRepository userRepository;
+        private readonly ILogger<AddUserModel> logger;
 
-        public AddUserModel(IUserService usersService, ILogger<AddUserModel> logger)
+        public AddUserModel(IUserRepository _userRepository, ILogger<AddUserModel> _logger)
         {
-            _usersService = usersService;
-            _logger = logger;
+            userRepository = _userRepository;
+            logger = _logger;
     }
 
         [BindProperty]
@@ -42,8 +43,8 @@ namespace CatalogOnline.Pages
                 password = hashedPassword,
                 role = User.Role
             };
-            var res  =  await _usersService.AddUser(newUser);
-            if (!res)
+            var res  =  userRepository.AddUser(newUser);
+            if (res is null)
             {
                 ModelState.AddModelError("AddUserError", "Failed to add user");
                 return Page(); // Return the same page to display the error

@@ -15,5 +15,6 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         void DeleteEnrollment(int id);
 
         Task<bool> UpdateEnrollment(Enrollment enrollment);
+        
     }
 }

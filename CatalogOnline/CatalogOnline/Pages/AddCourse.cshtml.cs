@@ -3,18 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.Models;
+using CatalogOnline.DAL.Repository.Interfaces;
 namespace CatalogOnline.Pages
 {
     public class AddCourseModel : PageModel
     {
-        private readonly ICourseService _courseService;
-        private readonly ILogger<AddCourseModel> _logger;
+        private readonly ICourseRepository courseRepository;
+ 
+        private readonly ILogger<AddCourseModel> logger;
 
 
-        public AddCourseModel(ICourseService courseService, ILogger<AddCourseModel> logger)
+        public AddCourseModel(ICourseRepository _courseRepository, ILogger<AddCourseModel> _logger)
         {
-            _courseService = courseService;
-            _logger = logger;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         public void OnGet()
@@ -37,8 +39,8 @@ namespace CatalogOnline.Pages
                 credits_number = Course.CreditsNumber,
                 year = Course.Year
             };
-            var res = await _courseService.AddCourse(newCourse);
-            if (!res)
+            var res = courseRepository.AddCourse(newCourse);
+            if (res is null)
             {
                 ModelState.AddModelError("AddCourseError", "Failed to add course");
                 return Page(); // Return the same page to display the error

@@ -1,31 +1,33 @@
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
 {
     public class DocumentPageModel : PageModel
     {
-        private readonly IDocumentService _documentService;
+        private readonly IDocumentService documentService;
+
+        private readonly IDocumentRepository documentRepository;
 
         public List<DocumentModel> Documents { get; private set; }
 
-        public DocumentPageModel(IDocumentService documentService)
+        public DocumentPageModel(IDocumentService _documentService, IDocumentRepository _documentRepository)
         {
-            _documentService = documentService;
+            documentService = _documentService;
+            documentRepository = _documentRepository;
         }
 
         public void OnGet()
         {
-            Documents = _documentService.GetDocuments();
+            Documents = documentService.GetDocuments();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _documentService.DeleteDocument(id);
+            documentRepository.DeleteDocument(id);
             return RedirectToPage();
         }
     }

@@ -19,10 +19,6 @@ namespace CatalogOnline.Services
             _notificationRepository = notificationRepository;
         }
 
-        public async Task<bool> AddNotification(Notification notification)
-        {
-            return await _notificationRepository.AddNotification(notification);
-        }
 
         public List<NotificationModel> GetAllNotificationModels()
         {
@@ -30,24 +26,5 @@ namespace CatalogOnline.Services
             return notifications;
         }
 
-        public List<Notification> GetAllNotifications()
-        {
-            return _notificationRepository.GetNotifications();
-        }
-
-        public Notification GetNotificationById(int id)
-        {
-            return _notificationRepository.GetNotificationById(id);
-        }
-
-        public async Task<bool> UpdateNotification(Notification notification)
-        {
-            return await _notificationRepository.UpdateNotification(notification);
-        }
-
-        public void DeleteNotification(int id)
-        {
-             _notificationRepository.DeleteNotification(id);
-        }
     }
 }

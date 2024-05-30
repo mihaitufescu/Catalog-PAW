@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
@@ -11,11 +12,13 @@ namespace CatalogOnline.Services
     {
         private readonly IMapper _mapper;
         private readonly IEnrollmentRepository _enrollmentRepository;
+        private readonly ICourseRepository _courseRepository;
 
-        public EnrollmentService(IMapper mapper, IEnrollmentRepository enrollmentRepository)
+        public EnrollmentService(IMapper mapper, IEnrollmentRepository enrollmentRepository, ICourseRepository courseRepository)
         {
             _mapper = mapper;
             _enrollmentRepository = enrollmentRepository;
+            _courseRepository = courseRepository;
         }
 
         public List<EnrollmentModel> GetAllEnrollments()
@@ -30,25 +33,26 @@ namespace CatalogOnline.Services
             return _mapper.Map<EnrollmentModel>(enrollment);
         }
 
-        public bool AddEnrollmentModel(EnrollmentModel enrollment)
+        //To rewrite this.
+        public List<StudentCourseModel> GetStudentCoursesWithGrades(int studentId)
         {
-            var enrollmentEntity = _mapper.Map<Enrollment>(enrollment);
-            return _enrollmentRepository.AddEnrollment(enrollmentEntity).Result;
-        }
+            var enrollments = _enrollmentRepository.GetEnrollments().Where(e => e.user_id == studentId).ToList();
+            var courseIds = enrollments.Select(e => e.course_id).ToList();
+            var courses = _courseRepository.GetAllCourses().Where(c => courseIds.Contains(c.course_id)).ToList();
 
-        public bool AddEnrollment(Enrollment enrollment)
-        {
-            return _enrollmentRepository.AddEnrollment(enrollment).Result;
-        }
+            var studentCourses = enrollments.Join(
+                courses,
+                enrollment => enrollment.course_id,
+                course => course.course_id,
+                (enrollment, course) => new StudentCourseModel
+                {
+                    CourseId = course.course_id,
+                    CourseName = course.subject,
+                    Credits = course.credits_number,
+                    DateJoined = enrollment.joined_since
+                }).ToList();
 
-        public bool UpdateEnrollment(Enrollment enrollment)
-        {
-            return _enrollmentRepository.UpdateEnrollment(enrollment).Result;
-        }
-
-        public void DeleteEnrollment(int id)
-        {
-            _enrollmentRepository.DeleteEnrollment(id);
+            return studentCourses;
         }
     }
 }

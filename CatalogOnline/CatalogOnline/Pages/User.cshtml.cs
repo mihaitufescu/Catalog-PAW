@@ -3,16 +3,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.Services.Interfaces;
 using CatalogOnline.Models;
 using Microsoft.AspNetCore.Mvc;
+using CatalogOnline.DAL.Repository.Interfaces;
 namespace CatalogOnline.Pages
 {
     [Authorize(Policy = "AdminOnly")]
     public class UsersModel : PageModel
     {
         private readonly IUserService _usersService;
-
-        public UsersModel(IUserService usersService)
+        private readonly IUserRepository userRepository;
+        public UsersModel(IUserService usersService, IUserRepository userRepository)
         {
             _usersService = usersService;
+            this.userRepository = userRepository;
         }
 
         public List<UserModel> Users { get; private set; }
@@ -24,7 +26,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _usersService.DeleteUser(id);
+            userRepository.DeleteUser(id);
             return RedirectToPage();
         }
 

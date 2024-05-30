@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,16 @@ namespace CatalogOnline.Pages
 {
     public class EditNotificationModel : PageModel
     {
-        private readonly ILogger<EditNotificationModel> _logger;
-        private readonly INotificationService _notificationService;
-        private readonly IUserService _userService;
+        private readonly ILogger<EditNotificationModel> logger;
+        private readonly INotificationRepository notificationRepository;
+        private readonly IUserRepository userRepository;
 
-        public EditNotificationModel(INotificationService notificationService, IUserService userService, ILogger<EditNotificationModel> logger)
+        public EditNotificationModel(INotificationRepository _notificationRepository, IUserRepository _userRepository,
+            ILogger<EditNotificationModel> _logger)
         {
-            _notificationService = notificationService;
-            _userService = userService;
-            _logger = logger;
+            notificationRepository = _notificationRepository;
+            userRepository = _userRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -29,7 +31,7 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var notification = _notificationService.GetNotificationById(id);
+            var notification = notificationRepository.GetNotificationById(id);
             if (notification == null)
             {
                 return NotFound();
@@ -43,7 +45,7 @@ namespace CatalogOnline.Pages
                 date = notification.date
             };
 
-            Users = _userService.GetAllUsers();
+            Users = userRepository.GetAllUsers();
             return Page();
         }
 
@@ -51,7 +53,7 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !await IsValidNotification(Notification))
             {
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -63,11 +65,11 @@ namespace CatalogOnline.Pages
                 date = Notification.date
             };
 
-            var res = await _notificationService.UpdateNotification(updatedNotification);
-            if (!res)
+            var res =  notificationRepository.UpdateNotification(updatedNotification);
+            if (res is null)
             {
                 ModelState.AddModelError("EditNotificationError", "Failed to update notification");
-                Users = _userService.GetAllUsers();
+                Users = userRepository.GetAllUsers();
                 return Page();
             }
 
@@ -78,7 +80,7 @@ namespace CatalogOnline.Pages
         {
             bool isValid = true;
 
-            if (notification.user_id <= 0 || !await _userService.UserExists(notification.user_id))
+            if (notification.user_id <= 0 || !await userRepository.UserExists(notification.user_id))
             {
                 ModelState.AddModelError("Notification.user_id", "User ID must be greater than 0 and must exist.");
                 isValid = false;

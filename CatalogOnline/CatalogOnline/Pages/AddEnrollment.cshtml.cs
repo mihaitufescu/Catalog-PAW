@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +12,20 @@ namespace CatalogOnline.Pages
 {
     public class AddEnrollmentModel : PageModel
     {
-        private readonly ILogger<AddEnrollmentModel> _logger;
-        private readonly IEnrollmentService _enrollmentService;
-        private readonly IUserService _userService;
-        private readonly ICourseService _courseService;
+        private readonly ILogger<AddEnrollmentModel> logger;
+        private readonly IEnrollmentService enrollmentService;
+        private readonly IUserRepository userRepository;
+        private readonly ICourseRepository courseRepository;
+        private readonly IEnrollmentRepository enrollmentRepository;
 
-        public AddEnrollmentModel(IEnrollmentService enrollmentService, IUserService userService, ICourseService courseService, ILogger<AddEnrollmentModel> logger)
+        public AddEnrollmentModel(IEnrollmentService _enrollmentService, IUserRepository _userRepository, ICourseRepository _courseRepository,
+            ILogger<AddEnrollmentModel> _logger, IEnrollmentRepository _enrollmentRepository)
         {
-            _enrollmentService = enrollmentService;
-            _userService = userService;
-            _courseService = courseService;
-            _logger = logger;
+            enrollmentService = _enrollmentService;
+            enrollmentRepository = _enrollmentRepository;
+            userRepository = _userRepository;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -32,8 +36,8 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Students = _userService.GetAllStudents();
-            Courses = _courseService.GetAllCourses();
+            Students = userRepository.GetAllStudents();
+            Courses = courseRepository.GetAllCourses();
 
             return Page();
         }
@@ -42,8 +46,8 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidEnrollment(Enrollment))
             {
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 
@@ -54,12 +58,12 @@ namespace CatalogOnline.Pages
                 joined_since = Enrollment.joined_since
             };
 
-            var res = _enrollmentService.AddEnrollment(newEnrollment);
-            if (!res)
+            var res = enrollmentRepository.AddEnrollment(newEnrollment);
+            if (res is null)
             {
                 ModelState.AddModelError("AddEnrollmentError", "Failed to add enrollment");
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 

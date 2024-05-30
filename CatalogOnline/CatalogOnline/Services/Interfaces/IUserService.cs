@@ -8,13 +8,6 @@ namespace CatalogOnline.Services.Interfaces
     {
         UserModel GetUserByName(string name);
         List<UserModel> GetUserModels();
-        Task<bool> UserExists(int userId);
 
-        List<User> GetAllUsers();
-        User GetUserById(int id); 
-        Task<bool> AddUser(User user);
-        Task<bool> UpdateUser(User user);
-        void DeleteUser(int id);
-        List<User> GetAllStudents();
     }
 }

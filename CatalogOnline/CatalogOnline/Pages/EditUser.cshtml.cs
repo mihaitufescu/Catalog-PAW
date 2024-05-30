@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,13 +10,13 @@ namespace CatalogOnline.Pages
 {
     public class EditUserModel : PageModel
     {
-        private readonly IUserService _usersService;
-        private readonly ILogger<EditUserModel> _logger;
+        private readonly IUserRepository userRepository;
+        private readonly ILogger<EditUserModel> logger;
 
-        public EditUserModel(IUserService usersService, ILogger<EditUserModel> logger)
+        public EditUserModel(IUserRepository _userRepository, ILogger<EditUserModel> _logger)
         {
-            _usersService = usersService;
-            _logger = logger;
+            userRepository = _userRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -23,7 +24,7 @@ namespace CatalogOnline.Pages
 
         public IActionResult OnGet(int id)
         {
-            User = _usersService.GetUserById(id);
+            User = userRepository.GetUserById(id);
 
             if (User == null)
             {
@@ -57,7 +58,7 @@ namespace CatalogOnline.Pages
                 ModelState.AddModelError("User.email", "Invalid email format.");
                 return Page();
             }
-            var userToUpdate = _usersService.GetUserById(User.user_id);
+            var userToUpdate = userRepository.GetUserById(User.user_id);
             if (userToUpdate == null)
             {
                 return NotFound();
@@ -72,7 +73,7 @@ namespace CatalogOnline.Pages
                 userToUpdate.password = BCrypt.Net.BCrypt.HashPassword(User.password);
                 TempData["PasswordMessage"] = "Password was succesfully changed.";
             }
-            var res = await _usersService.UpdateUser(userToUpdate);
+            var res = await userRepository.UpdateUser(userToUpdate);
             if (!res)
             {
                 ModelState.AddModelError("EditUserError", "Failed to edit user");

@@ -1,6 +1,6 @@
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,22 +8,27 @@ namespace CatalogOnline.Pages
 {
     public class GradePageModel : PageModel
     {
-        private readonly IGradeService _gradeService;
+        private readonly IGradeService gradeService;
+
+        private readonly IGradeRepository gradeRepository;
+
         public List<GradeModel> Grades { get; private set; }
 
-        public GradePageModel(IGradeService gradeService)
+        public GradePageModel(IGradeService _gradeService, IGradeRepository _gradeRepository)
         {
-            _gradeService = gradeService;
+            gradeService = _gradeService;
+
+            gradeRepository = _gradeRepository;
         }
 
         public void OnGet()
         {
-            Grades = _gradeService.GetAllGrades();
+            Grades = gradeService.GetAllGrades();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            _gradeService.DeleteGrade(id);
+            gradeRepository.DeleteGrade(id);
             return RedirectToPage();
         }
     }

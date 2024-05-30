@@ -26,48 +26,12 @@ namespace CatalogOnline.Services
             return user;
         }
 
-        public List<User> GetAllUsers()
-        {
-            return _userRepository.GetUsers();
-        }
-
         public List<UserModel> GetUserModels()
         {
             var users = _mapper.Map<List<UserModel>>(_userRepository.GetUsers());
             return users;
-        }
 
-        public List<User> GetAllStudents(){
-            return _userRepository.GetAllStudent();
 
         }
-        public User GetUserById(int id)
-        {
-            return _userRepository.GetUserById(id);
-        }
-
-        public async Task<bool> AddUser(User user)
-        {
-            var res = await _userRepository.AddUser(user);
-            return res;
-        }
-
-        public async Task<bool> UpdateUser(User user)
-        {
-            var res = await _userRepository.UpdateUser(user);
-            return res;
-        }
-
-        public void DeleteUser(int id)
-        {
-            _userRepository.DeleteUser(id);
-        }
-
-
-        public async Task<bool> UserExists(int userId)
-        {
-            return await _userRepository.UserExists(userId);
-        }
-
     }
 }

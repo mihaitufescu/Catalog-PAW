@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CatalogOnline.DAL;
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CatalogOnline.Services
@@ -19,8 +19,6 @@ namespace CatalogOnline.Services
             _mapper = mapper;
             _gradeRepository = gradeRepository;
         }
-
-
 
         public List<GradeModel> GetAllGrades()
         {
@@ -40,27 +38,11 @@ namespace CatalogOnline.Services
             return _mapper.Map<List<GradeModel>>(grades);
         }
 
-        public async Task<bool> AddGrade(Grade grade)
+        public List<GradeModel> GetGradesByStudentAndCourse(int studentId, int courseId)
         {
-            return await _gradeRepository.AddGrade(grade);
+            var grades = _gradeRepository.GetGradesByStudentAndCourse(studentId, courseId);
+            return _mapper.Map<List<GradeModel>>(grades);
         }
 
-        public async Task<bool> UpdateGrade(Grade grade)
-        {
-            await _gradeRepository.UpdateGrade(grade);
-            return true;
-            
-        }
-
-        public void DeleteGrade(int id)
-        {
-              _gradeRepository.DeleteGrade(id);
-        }
-
-        Grade IGradeService.GetGradeById(int gradeId)
-        {
-            var grade = _gradeRepository.GetGradeById(gradeId);
-            return _mapper.Map<Grade>(grade);
-        }
     }
 }

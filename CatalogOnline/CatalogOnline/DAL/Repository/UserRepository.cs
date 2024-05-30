@@ -29,7 +29,12 @@ namespace CatalogOnline.DAL.Repository
             return _context.User.Find(id);
         }
 
-        public List<User> GetAllStudent()
+        public List<User> GetAllUsers()
+        {
+            return _context.User.ToList();
+        }   
+
+        public List<User> GetAllStudents()
         {
             return _context.User.Where(u => u.role == "student").ToList();
         }

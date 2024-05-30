@@ -1,0 +1,35 @@
+﻿@page
+@model CatalogOnline.Pages.ViewCoursesModel
+@{
+}
+
+<h1 class="text-center">Your Course List</h1>
+
+@if (Model.Courses != null && Model.Courses.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Course Credits</th>
+                <th>Date Joined</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model.Courses)
+            {
+                <tr>
+                    <td>@course.CourseId</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.Credits</td>
+                    <td>@course.DateJoined.ToString("dd-MM-yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You are not enrolled in any courses.</p>
+}

@@ -8,11 +8,6 @@ namespace CatalogOnline.Services.Interfaces
         List<CourseModel> GetAllCourseModels();
         List<CourseModel> GetCoursesBySubject(string subject);
         List<CourseModel> GetCoursesByYear(int year);
-        Course GetCourseById(int courseId);
 
-        List<Course> GetAllCourses();
-        Task<bool> AddCourse(Course course);
-        Task<bool> UpdateCourse(Course course);
-        void DeleteCourse(int courseId);
     }
 }

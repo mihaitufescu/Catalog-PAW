@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +12,18 @@ namespace CatalogOnline.Pages
 {
     public class AddGradeModel : PageModel
     {
-        private readonly ILogger<AddGradeModel> _logger;
-        private readonly IGradeService _gradeService;
-        private readonly IUserService _userService;
-        private readonly ICourseService _courseService;
+        private readonly ILogger<AddGradeModel> logger;
+        private readonly IGradeRepository gradeRepository;
+        private readonly IUserRepository userRepository;
+        private readonly ICourseRepository courseRepository;
 
-        public AddGradeModel(IGradeService gradeService, IUserService userService, ICourseService courseService, ILogger<AddGradeModel> logger)
+        public AddGradeModel(IGradeRepository _gradeRepository, IUserRepository _userRepository,
+            ICourseRepository _courseRepository, ILogger<AddGradeModel> _logger)
         {
-            _gradeService = gradeService;
-            _userService = userService;
-            _courseService = courseService;
-            _logger = logger;
+            gradeRepository = _gradeRepository;
+            userRepository = _userRepository;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         [BindProperty]
@@ -32,8 +34,8 @@ namespace CatalogOnline.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Students = _userService.GetAllStudents();
-            Courses = _courseService.GetAllCourses();
+            Students = userRepository.GetAllStudents();
+            Courses = courseRepository.GetAllCourses();
 
             return Page();
         }
@@ -42,8 +44,8 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidGrade(Grade))
             {
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
                 return Page();
             }
 
@@ -56,14 +58,7 @@ namespace CatalogOnline.Pages
                 percentage = Grade.percentage
             };
 
-            var res = await _gradeService.AddGrade(newGrade);
-            if (!res)
-            {
-                ModelState.AddModelError("AddGradeError", "Failed to add grade");
-                Students = _userService.GetAllStudents();
-                Courses = _courseService.GetAllCourses();
-                return Page();
-            }
+
 
             return RedirectToPage("Grade");
         }

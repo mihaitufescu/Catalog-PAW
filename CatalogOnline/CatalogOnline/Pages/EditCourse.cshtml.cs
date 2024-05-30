@@ -1,4 +1,5 @@
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,21 +10,21 @@ namespace CatalogOnline.Pages
 {
     public class EditCourseModel : PageModel
     {
-        private readonly ICourseService _courseService;
-        private readonly ILogger<EditCourseModel> _logger;
+        private readonly ICourseRepository courseRepository;
+        private readonly ILogger<EditCourseModel> logger;
 
         [BindProperty]
         public Course Course { get; set; }
 
-        public EditCourseModel(ICourseService courseService, ILogger<EditCourseModel> logger)
+        public EditCourseModel(ILogger<EditCourseModel> _logger, ICourseRepository _courseRepository)
         {
-            _courseService = courseService;
-            _logger = logger;
+            courseRepository = _courseRepository;
+            logger = _logger;
         }
 
         public IActionResult OnGet(int id)
         {
-            Course = _courseService.GetCourseById(id);
+            Course = courseRepository.GetCourseById(id);
             if (Course == null)
             {
                 return NotFound();
@@ -39,7 +40,7 @@ namespace CatalogOnline.Pages
                 return Page();
             }
 
-            var res = _courseService.UpdateCourse(Course);
+            var res = courseRepository.UpdateCourse(Course);
             if (res == null)
             {
                 ModelState.AddModelError("UpdateCourseError", "Failed to update course");
