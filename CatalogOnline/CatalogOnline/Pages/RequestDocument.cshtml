@@ -1,0 +1,11 @@
+﻿@page
+@model CatalogOnline.Pages.RequestDocumentModel
+@{
+    ViewData["Title"] = "Request Document";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" asp-page-handler="GenerateCertificate">
+    <button type="submit" class="btn btn-primary">Generate Student Certificate</button>
+</form>

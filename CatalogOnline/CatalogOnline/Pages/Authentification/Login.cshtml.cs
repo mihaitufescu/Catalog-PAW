@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace CatalogOnline.Pages.Authentification
 {
@@ -23,9 +24,11 @@ namespace CatalogOnline.Pages.Authentification
         {
             _context = context;
         }
+
         public void OnGet()
         {
         }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
@@ -35,13 +38,16 @@ namespace CatalogOnline.Pages.Authentification
                     if (string.IsNullOrEmpty(User.Username))
                     {
                         ModelState.AddModelError(string.Empty, "The username is empty");
-                    }
-                    else if (string.IsNullOrEmpty(User.Password))
-                    {
-                        ModelState.AddModelError(string.Empty, "The password is empty");
+                        return Page();
                     }
 
-                    User? user = _context.User.FirstOrDefault(user => user.username.ToLower() == User.Username.ToLower());
+                    if (string.IsNullOrEmpty(User.Password))
+                    {
+                        ModelState.AddModelError(string.Empty, "The password is empty");
+                        return Page();
+                    }
+
+                    var user = await _context.User.FirstOrDefaultAsync(u => u.username.ToLower() == User.Username.ToLower());
                     if (user != null)
                     {
                         // Verify the entered password against the hashed password stored in the database
@@ -49,14 +55,15 @@ namespace CatalogOnline.Pages.Authentification
                         {
                             // Passwords match, authentication successful
                             var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.username!),
-                        new Claim("Role", user.role.ToString()),
-                        new Claim("UserId", user.user_id.ToString())
-                    };
-                            var claimIdentity = new ClaimsIdentity(claims, "AuthentificationCookie");
+                            {
+                                new Claim(ClaimTypes.Name, user.username),
+                                new Claim(ClaimTypes.Role, user.role ?? string.Empty), // Ensure role is included
+                                new Claim("UserId", user.user_id.ToString())
+                            };
 
-                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                             return RedirectToPage("/Index");
                         }
                         else
@@ -84,6 +91,5 @@ namespace CatalogOnline.Pages.Authentification
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToPage("/Authentification/Login");
         }
-
     }
 }

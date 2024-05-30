@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CatalogOnline.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
-
-
 </head>
 <body>
     <header>
@@ -28,9 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/User">Users</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated &&  (User.IsInRole("admin") ||  User.IsInRole("teacher") ))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/User">Users</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Course">Course</a>
                         </li>
@@ -46,10 +47,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Document">Document</a>
                         </li>
+                        @if (User.IsInRole("student")){
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Get Documents</a>
+                        </li>
+                        }
                     </ul>
-                    @if (!string.IsNullOrEmpty(User.Identity.Name))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <form class="form-inline my-2 my-lg-0" asp-page-handler="Logout" method="post">
+                        <form class="form-inline my-2 my-lg-0" asp-page="/Authentification/Login" asp-page-handler="Logout" method="post">
                             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
                         </form>
                     }

@@ -1,12 +1,11 @@
-using CatalogOnline.Models;
-using CatalogOnline.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+using CatalogOnline.Services.Interfaces;
+using CatalogOnline.Models;
+using Microsoft.AspNetCore.Mvc;
 namespace CatalogOnline.Pages
 {
+    [Authorize(Policy = "AdminOnly")]
     public class UsersModel : PageModel
     {
         private readonly IUserService _usersService;
@@ -28,5 +27,7 @@ namespace CatalogOnline.Pages
             _usersService.DeleteUser(id);
             return RedirectToPage();
         }
+
+
     }
 }

@@ -9,7 +9,8 @@
     @if (!string.IsNullOrEmpty(Model.LoggedInUsername))
     {
         <p>Hello, @Model.LoggedInUsername</p>
-        <p>Id :  @Model.LoggedId</p>
+        <p>Id: @Model.LoggedId</p>
+        <p>Role: @Model.Role</p>
     }
     else
     {

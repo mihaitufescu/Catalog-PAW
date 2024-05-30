@@ -1,32 +1,32 @@
-﻿@page
-@model CatalogOnline.Pages.Authentification.LoginModel
+﻿    @page
+    @model CatalogOnline.Pages.Authentification.LoginModel
 
-<div class="container border" style="padding:10px;">
-    <form method="post">
-        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="User.Username"></label>
+    <div class="container border" style="padding:10px;">
+        <form method="post">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="User.Username"></label>
+                </div>
+                <div class="col-5">
+                    <input type="text" asp-for="User.Username" class="form-control" />
+                </div>
+                <span class="text-danger" asp-validation-for="User.Username"></span>
             </div>
-            <div class="col-5">
-                <input type="text" asp-for="User.Username" class="form-control" />
+            <br />
+            <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="User.Password"></label>
+                </div>
+                <div class="col-5">
+                    <input type="password" asp-for="User.Password" class="form-control" />
+                </div>
+                <span class="text-danger" asp-validation-for="User.Password"></span>
             </div>
-            <span class="text-danger" asp-validation-for="User.Username"></span>
-        </div>
-        <br />
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="User.Password"></label>
+            <div class="form-group row">
+                <div class="col-2">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
             </div>
-            <div class="col-5">
-                <input type="password" asp-for="User.Password" class="form-control" />
-            </div>
-            <span class="text-danger" asp-validation-for="User.Password"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-2">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>

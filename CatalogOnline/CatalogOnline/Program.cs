@@ -22,6 +22,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Authentification/Login";
         options.AccessDeniedPath = "/Authentification/Forbidden";
     });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("admin"));
+    options.AddPolicy("AllowedRoles", policy => policy.RequireRole("admin", "secretar", "teacher"));
+    options.AddPolicy("Student", policy => policy.RequireRole("student"));
+});
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
@@ -31,7 +38,7 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddScoped<IGradeService, GradeService>();
 
-builder.Services.AddScoped<IEnrollmentRepository,  EnrollmentRepository>();
+builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
@@ -42,9 +49,9 @@ builder.Services.AddScoped<IDocumentService, DocumentService>();
 
 builder.Services.AddControllersWithViews();
 
+
+
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -55,6 +62,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // Ensure this is added
 app.UseAuthorization();
 
 app.MapRazorPages();
