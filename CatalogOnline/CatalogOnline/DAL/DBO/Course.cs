@@ -29,6 +29,7 @@ namespace CatalogOnline.DAL.DBO
         [Column(TypeName = "int")]
         public int year { get; set; }
 
-        // Define navigation property
+        public ICollection<Enrollment> Enrollments { get; set; }
+
     }
 }

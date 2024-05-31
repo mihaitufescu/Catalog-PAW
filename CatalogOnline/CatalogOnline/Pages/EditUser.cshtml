@@ -32,6 +32,17 @@
         <label asp-for="User.role"></label>
         <input asp-for="User.role" class="form-control" />
     </div>
+    @if (Model.User.role == "student")
+    {
+        <div class="form-group">
+            <label asp-for="User.year_of_study"></label>
+            <input asp-for="User.year_of_study" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="User.group"></label>
+            <input asp-for="User.group" class="form-control" />
+        </div>
+    }
     <button type="submit" class="btn btn-success">Save Changes</button>
 </form>
 <a asp-page="./User" class="btn btn-secondary">Cancel</a>

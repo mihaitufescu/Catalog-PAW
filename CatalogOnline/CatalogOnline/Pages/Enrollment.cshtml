@@ -8,7 +8,7 @@
         <tr>
             <th>User ID</th>
             <th>Course ID</th>
-            <th>Joined Since</th>
+            <th>Semester</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -18,7 +18,7 @@
             <tr>
                 <td>@enrollment.user_id</td>
                 <td>@enrollment.course_id</td>
-                <td>@enrollment.joined_since.ToString("dd-MM-yyyy")</td>
+                <td>@enrollment.semester</td>
                 <td>
                     <a asp-page="./EditEnrollment" asp-route-id="@enrollment.enrollment_id" class="btn btn-update btn-spacing">Update</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@enrollment.enrollment_id" onsubmit="return confirm('Are you sure you want to delete this enrollment?');" style="display:inline;">

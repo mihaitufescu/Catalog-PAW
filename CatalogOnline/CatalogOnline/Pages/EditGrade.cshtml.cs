@@ -52,7 +52,7 @@ namespace CatalogOnline.Pages
                 return Page();
             }
 
-
+            gradeRepository.UpdateGrade(Grade);
 
             return RedirectToPage("Grade");
         }
@@ -75,5 +75,7 @@ namespace CatalogOnline.Pages
 
             return isValid;
         }
+
+
     }
 }

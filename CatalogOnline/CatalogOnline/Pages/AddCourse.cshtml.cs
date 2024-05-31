@@ -4,14 +4,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.Models;
 using CatalogOnline.DAL.Repository.Interfaces;
+
 namespace CatalogOnline.Pages
 {
     public class AddCourseModel : PageModel
     {
         private readonly ICourseRepository courseRepository;
- 
         private readonly ILogger<AddCourseModel> logger;
-
 
         public AddCourseModel(ICourseRepository _courseRepository, ILogger<AddCourseModel> _logger)
         {
@@ -19,11 +18,13 @@ namespace CatalogOnline.Pages
             logger = _logger;
         }
 
+        [BindProperty]
+        public CourseRegisterModel Course { get; set; } = new CourseRegisterModel();
+
         public void OnGet()
         {
         }
-        [BindProperty]
-        public required CourseRegisterModel Course { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -31,7 +32,6 @@ namespace CatalogOnline.Pages
                 return Page();
             }
 
-            // Create a new course entity
             var newCourse = new Course
             {
                 subject = Course.Subject,
@@ -39,14 +39,15 @@ namespace CatalogOnline.Pages
                 credits_number = Course.CreditsNumber,
                 year = Course.Year
             };
-            var res = courseRepository.AddCourse(newCourse);
-            if (res is null)
+
+            var result = await courseRepository.AddCourse(newCourse);
+            if (!result)
             {
                 ModelState.AddModelError("AddCourseError", "Failed to add course");
-                return Page(); // Return the same page to display the error
+                return Page();
             }
 
-            return RedirectToPage("Course"); // Corrected redirect
-        }   
+            return RedirectToPage("Course");
+        }
     }
 }

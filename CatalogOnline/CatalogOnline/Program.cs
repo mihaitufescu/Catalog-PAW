@@ -48,7 +48,7 @@ builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();

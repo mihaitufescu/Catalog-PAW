@@ -12,32 +12,32 @@ namespace CatalogOnline.Pages
 {
     public class AddEnrollmentModel : PageModel
     {
-        private readonly ILogger<AddEnrollmentModel> logger;
-        private readonly IEnrollmentService enrollmentService;
-        private readonly IUserRepository userRepository;
-        private readonly ICourseRepository courseRepository;
-        private readonly IEnrollmentRepository enrollmentRepository;
+        private readonly ILogger<AddEnrollmentModel> _logger;
+        private readonly IEnrollmentService _enrollmentService;
+        private readonly IUserRepository _userRepository;
+        private readonly ICourseRepository _courseRepository;
+        private readonly IEnrollmentRepository _enrollmentRepository;
 
-        public AddEnrollmentModel(IEnrollmentService _enrollmentService, IUserRepository _userRepository, ICourseRepository _courseRepository,
-            ILogger<AddEnrollmentModel> _logger, IEnrollmentRepository _enrollmentRepository)
+        public AddEnrollmentModel(IEnrollmentService enrollmentService, IUserRepository userRepository, ICourseRepository courseRepository,
+            ILogger<AddEnrollmentModel> logger, IEnrollmentRepository enrollmentRepository)
         {
-            enrollmentService = _enrollmentService;
-            enrollmentRepository = _enrollmentRepository;
-            userRepository = _userRepository;
-            courseRepository = _courseRepository;
-            logger = _logger;
+            _enrollmentService = enrollmentService;
+            _enrollmentRepository = enrollmentRepository;
+            _userRepository = userRepository;
+            _courseRepository = courseRepository;
+            _logger = logger;
         }
 
         [BindProperty]
-        public required EnrollmentRegisterModel Enrollment { get; set; }
+        public EnrollmentRegisterModel Enrollment { get; set; }
 
         public List<User> Students { get; set; }
         public List<Course> Courses { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Students = userRepository.GetAllStudents();
-            Courses = courseRepository.GetAllCourses();
+            Students = _userRepository.GetAllStudents();
+            Courses = _courseRepository.GetAllCourses();
 
             return Page();
         }
@@ -46,8 +46,8 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidEnrollment(Enrollment))
             {
-                Students = userRepository.GetAllStudents();
-                Courses = courseRepository.GetAllCourses();
+                Students = _userRepository.GetAllStudents();
+                Courses = _courseRepository.GetAllCourses();
                 return Page();
             }
 
@@ -55,15 +55,15 @@ namespace CatalogOnline.Pages
             {
                 user_id = Enrollment.user_id,
                 course_id = Enrollment.course_id,
-                joined_since = Enrollment.joined_since
+                semester = Enrollment.semester
             };
 
-            var res = enrollmentRepository.AddEnrollment(newEnrollment);
-            if (res is null)
+            var res = await _enrollmentRepository.AddEnrollment(newEnrollment);
+            if (!res)
             {
                 ModelState.AddModelError("AddEnrollmentError", "Failed to add enrollment");
-                Students = userRepository.GetAllStudents();
-                Courses = courseRepository.GetAllCourses();
+                Students = _userRepository.GetAllStudents();
+                Courses = _courseRepository.GetAllCourses();
                 return Page();
             }
 
@@ -86,9 +86,9 @@ namespace CatalogOnline.Pages
                 isValid = false;
             }
 
-            if (enrollment.joined_since == DateTime.MinValue)
+            if (enrollment.semester <= 0)
             {
-                ModelState.AddModelError("Enrollment.joined_since", "Joined Since date is required.");
+                ModelState.AddModelError("Enrollment.semester", "Semester must be greater than 0.");
                 isValid = false;
             }
 

@@ -5,6 +5,7 @@ using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
 {
@@ -53,11 +54,13 @@ namespace CatalogOnline.Pages
                     passwordChanged = true;
                 }
             }
+
             if (!IsValidEmail(User.email))
             {
                 ModelState.AddModelError("User.email", "Invalid email format.");
                 return Page();
             }
+
             var userToUpdate = userRepository.GetUserById(User.user_id);
             if (userToUpdate == null)
             {
@@ -68,11 +71,15 @@ namespace CatalogOnline.Pages
             userToUpdate.legal_name = User.legal_name;
             userToUpdate.email = User.email;
             userToUpdate.role = User.role;
+            userToUpdate.year_of_study = User.year_of_study;
+            userToUpdate.group = User.group;
+
             if (passwordChanged)
             {
                 userToUpdate.password = BCrypt.Net.BCrypt.HashPassword(User.password);
-                TempData["PasswordMessage"] = "Password was succesfully changed.";
+                TempData["PasswordMessage"] = "Password was successfully changed.";
             }
+
             var res = await userRepository.UpdateUser(userToUpdate);
             if (!res)
             {
@@ -88,6 +95,7 @@ namespace CatalogOnline.Pages
             var regex = new Regex(@"^[^\s@]+@[^\s@]+\.[^\s@]+$");
             return regex.IsMatch(email);
         }
+
         private bool IsValidPassword(string password)
         {
             // Regular expression to check if the password contains at least one letter, one number, and one special character, and is at least 8 characters long

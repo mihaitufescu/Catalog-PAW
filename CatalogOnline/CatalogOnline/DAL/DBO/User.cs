@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CatalogOnline.DAL.DBO
 {
@@ -31,5 +30,15 @@ namespace CatalogOnline.DAL.DBO
 
         [Column(TypeName = "nvarchar(64)")]
         public string role { get; set; }
+
+        [Column(TypeName = "int")]
+        public int? year_of_study { get; set; }
+
+        [Column(TypeName = "nvarchar(32)")]
+        public string? group { get; set; }
+
+
+        public ICollection<Enrollment> Enrollments { get; set; }
+
     }
 }

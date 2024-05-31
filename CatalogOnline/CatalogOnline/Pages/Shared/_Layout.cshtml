@@ -53,6 +53,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Get Documents</a>
                         </li>
                         }
+                        
+                        @if (User.IsInRole("student"))
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ViewCourses">School Situtation </a>
+                            </li>
+                        }
                     </ul>
                     @if (User.Identity.IsAuthenticated)
                     {

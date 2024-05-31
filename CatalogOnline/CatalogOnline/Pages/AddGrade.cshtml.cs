@@ -59,7 +59,7 @@ namespace CatalogOnline.Pages
             };
 
 
-
+            gradeRepository.AddGrade(newGrade);
             return RedirectToPage("Grade");
         }
 

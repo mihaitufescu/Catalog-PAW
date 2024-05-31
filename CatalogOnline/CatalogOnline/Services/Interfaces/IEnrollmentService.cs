@@ -11,6 +11,7 @@ namespace CatalogOnline.Services.Interfaces
 
         List<StudentCourseModel> GetStudentCoursesWithGrades(int studentId);
 
-
+        Task<List<StudentCourseModel>> GetAllCoursesAsync(int userId);
+        Task<List<StudentCourseModel>> GetCoursesByYearAsync(int userId, int year);
     }
 }

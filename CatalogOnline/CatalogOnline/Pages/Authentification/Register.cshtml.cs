@@ -67,6 +67,5 @@ namespace CatalogOnline.Pages.Authentification
             }
             return Page();
         }
-
     }
 }

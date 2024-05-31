@@ -45,7 +45,7 @@ namespace CatalogOnline.Pages
                 enrollment_id = enrollment.enrollment_id,
                 user_id = enrollment.user_id,
                 course_id = enrollment.course_id,
-                joined_since = enrollment.joined_since
+                semester = enrollment.semester
             };
 
             Students = userRepository.GetAllStudents();
@@ -68,7 +68,7 @@ namespace CatalogOnline.Pages
                 enrollment_id = Enrollment.enrollment_id,
                 user_id = Enrollment.user_id,
                 course_id = Enrollment.course_id,
-                joined_since = Enrollment.joined_since
+                semester = Enrollment.semester
             };
 
             var res =  enrollmentRepository.UpdateEnrollment(updatedEnrollment);
@@ -99,7 +99,7 @@ namespace CatalogOnline.Pages
                 isValid = false;
             }
 
-            if (enrollment.joined_since == DateTime.MinValue)
+            if (enrollment.semester == 0)
             {
                 ModelState.AddModelError("Enrollment.joined_since", "Joined Since date is required.");
                 isValid = false;

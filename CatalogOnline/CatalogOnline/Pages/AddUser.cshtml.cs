@@ -1,9 +1,9 @@
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models.AuthentificationModels;
-using CatalogOnline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
@@ -17,10 +17,10 @@ namespace CatalogOnline.Pages
         {
             userRepository = _userRepository;
             logger = _logger;
-    }
+        }
 
         [BindProperty]
-        public new UserRegisterModel User { get; set; }
+        public UserRegisterModel User { get; set; }
 
         public void OnGet()
         {
@@ -32,6 +32,7 @@ namespace CatalogOnline.Pages
             {
                 return Page();
             }
+
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(User.Password);
 
             // Create a new user entity
@@ -41,16 +42,19 @@ namespace CatalogOnline.Pages
                 legal_name = User.LegalName,
                 email = User.Email,
                 password = hashedPassword,
-                role = User.Role
+                role = User.Role,
+                year_of_study = User.Role == "student" ? User.YearOfStudy : null,
+                group = User.Role == "student" ? User.Group : null
             };
-            var res  =  userRepository.AddUser(newUser);
-            if (res is null)
+
+            var res = userRepository.AddUser(newUser);
+            if (res == null)
             {
                 ModelState.AddModelError("AddUserError", "Failed to add user");
-                return Page(); // Return the same page to display the error
+                return Page();
             }
 
-            return RedirectToPage("User"); // Corrected redirect
+            return RedirectToPage("User");
         }
     }
 }

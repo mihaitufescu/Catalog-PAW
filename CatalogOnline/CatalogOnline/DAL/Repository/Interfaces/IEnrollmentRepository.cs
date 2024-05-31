@@ -10,11 +10,14 @@ namespace CatalogOnline.DAL.Repository.Interfaces
 
         Enrollment GetEnrollmentById(int id);
 
+        Enrollment GetEnrollmentByUserAndCourseID(int userId, int courseId);
+
         Task<bool> AddEnrollment(Enrollment enrollment);
 
         void DeleteEnrollment(int id);
 
         Task<bool> UpdateEnrollment(Enrollment enrollment);
-        
+
+        Task<List<Enrollment>> GetEnrollmentsByUserAsync(int userId);
     }
 }

@@ -26,7 +26,7 @@ namespace CatalogOnline.Mappings
             CreateMap<Enrollment, EnrollmentModel>()
                 .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.user_id))
                 .ForMember(dest => dest.course_id, opt => opt.MapFrom(src => src.course_id))
-                .ForMember(dest => dest.joined_since, opt => opt.MapFrom(src => src.joined_since));
+                .ForMember(dest => dest.semester, opt => opt.MapFrom(src => src.semester));
 
             CreateMap<Notification, NotificationModel>()
                 .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.user_id))
@@ -39,7 +39,25 @@ namespace CatalogOnline.Mappings
                 .ForMember(dest => dest.description, opt => opt.MapFrom(src => src.description))
                 .ForMember(dest => dest.date, opt => opt.MapFrom(src => src.date))
                 .ForMember(dest => dest.type, opt => opt.MapFrom(src => src.type))
-                .ForMember(dest => dest.location, opt => opt.MapFrom(src => src.location)); 
+                .ForMember(dest => dest.location, opt => opt.MapFrom(src => src.location));
+
+            CreateMap<Enrollment, EnrollmentModel>();
+            CreateMap<Enrollment, StudentCourseModel>()
+                .ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.Course.course_id))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.subject))
+                .ForMember(dest => dest.Credits, opt => opt.MapFrom(src => src.Course.credits_number))
+                .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Course.year))
+                .ForMember(dest => dest.Mandatory, opt => opt.MapFrom(src => src.Course.mandatory))
+                .ForMember(dest => dest.Semester, opt => opt.MapFrom(src => src.semester));
+
+            CreateMap<Course, StudentCourseModel>()
+            .ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.course_id))
+            .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.subject))
+            .ForMember(dest => dest.Credits, opt => opt.MapFrom(src => src.credits_number))
+            .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.year))
+            .ForMember(dest => dest.Mandatory, opt => opt.MapFrom(src => src.mandatory));
+
+
         }
     }
 }

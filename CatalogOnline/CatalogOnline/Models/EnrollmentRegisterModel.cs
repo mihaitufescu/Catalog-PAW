@@ -12,6 +12,6 @@ namespace CatalogOnline.Models
         [Required(ErrorMessage = "Course ID is required")]
         public int course_id { get; set; }
         [Required(ErrorMessage = "Joined since is required")]
-        public DateTime joined_since { get; set; }
+        public int semester { get; set; }
     }
 }

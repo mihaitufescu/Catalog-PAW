@@ -10,12 +10,14 @@ namespace CatalogOnline.DAL.DBO
 
         [ForeignKey("User")]
         public int user_id { get; set; }
+        public User User { get; set; }
 
         [ForeignKey("Course")]
         public int course_id { get; set; }
+        public Course Course { get; set; }
 
         [Required]
-        [Column(TypeName = "date")]
-        public DateTime joined_since { get; set; }
+        [Column(TypeName = "int")]
+        public int semester { get; set; }
     }
 }

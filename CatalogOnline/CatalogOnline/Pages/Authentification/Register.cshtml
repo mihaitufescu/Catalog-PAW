@@ -1,76 +1,97 @@
 ﻿@page
 @model CatalogOnline.Pages.Authentification.RegisterModel
 @{
+}
 <div class="container border" style="padding:10px;">
     <form method="post">
-            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.Username"></label>
-                </div>
-                <div class="col-5">
-                    <input type="text" asp-for="User.Username" class="form-control" />
-                </div>
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.Username"></label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="User.Username" class="form-control" />
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.Username"></span>
             </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.LegalName">Legal name</label>
-                </div>
-                <div class="col-5">
-                    <input type="text" asp-for="User.LegalName" class="form-control" />
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.LegalName">Legal name</label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="User.LegalName" class="form-control" />
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.LegalName"></span>
             </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.Email"></label>
-                </div>
-                <div class="col-5">
-                    <input type="text" asp-for="User.Email" class="form-control" />
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.Email"></label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="User.Email" class="form-control" />
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.Email"></span>
             </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.Password"></label>
-                </div>
-                <div class="col-5">
-                    <input type="password" asp-for="User.Password" class="form-control" />
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.Password"></label>
+            </div>
+            <div class="col-5">
+                <input type="password" asp-for="User.Password" class="form-control" />
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.Password"></span>
             </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.ConfirmPassword">Confirm password</label>
-                </div>
-                <div class="col-5">
-                    <input type="password" asp-for="User.ConfirmPassword" class="form-control" />
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.ConfirmPassword">Confirm password</label>
+            </div>
+            <div class="col-5">
+                <input type="password" asp-for="User.ConfirmPassword" class="form-control" />
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.ConfirmPassword"></span>
             </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-2">
-                    <label asp-for="User.Role"></label>
-                </div>
-                <div class="col-5">
-                    <select asp-for="User.Role" class="form-control">
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                    </select>
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="User.Role"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="User.Role" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="col-5">
                 <span class="text-danger" asp-validation-for="User.Role"></span>
             </div>
-            <div class="form-group row">
-                <div class="col-2">
-                    <input type="submit" class="btn btn-primary" value="Register">
-                </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <input type="submit" class="btn btn-primary" value="Register">
             </div>
+        </div>
     </form>
 </div>
-}

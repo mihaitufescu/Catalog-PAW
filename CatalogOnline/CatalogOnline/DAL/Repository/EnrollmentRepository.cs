@@ -26,6 +26,11 @@ namespace CatalogOnline.DAL.Repository
             return _context.Enrollment.Find(id);
         }
 
+        public Enrollment GetEnrollmentByUserAndCourseID(int userId, int course)
+        {
+            return _context.Enrollment.FirstOrDefault(e => e.user_id == userId && e.course_id == course);
+        }
+
         public async Task<bool> AddEnrollment(Enrollment enrollment)
         {
             _context.Enrollment.Add(enrollment);
@@ -44,6 +49,8 @@ namespace CatalogOnline.DAL.Repository
             
         }
 
+         
+
         public async Task<bool> UpdateEnrollment(Enrollment enrollment)
         {
             var existingEnrollment = await _context.Enrollment.FindAsync(enrollment.enrollment_id);
@@ -57,6 +64,13 @@ namespace CatalogOnline.DAL.Repository
             return false;
         }
 
-
+        public async Task<List<Enrollment>> GetEnrollmentsByUserAsync(int userId)
+        {
+            return await _context.Enrollment
+                .Include(e => e.Course)
+                .Where(e => e.user_id == userId)
+                .OrderBy(e => e.semester)
+                .ToListAsync();
+        }
     }
 }
