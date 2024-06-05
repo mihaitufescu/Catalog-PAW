@@ -1,6 +1,7 @@
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 
 namespace CatalogOnline.Pages
 {
+    [Authorize(Roles = "admin")]
     public class EditGradeModel : PageModel
     {
         private readonly IGradeRepository gradeRepository;

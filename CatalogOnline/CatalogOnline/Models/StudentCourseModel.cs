@@ -17,7 +17,6 @@ namespace CatalogOnline.Models
         public List<GradeDetailModel> Grades { get; set; } = new List<GradeDetailModel>();
 
 
-        //De lene sunt aici puse ca nu mai stau sa fac repouri
         public double CalculateWeightedScore()
         {
             double weightedScore = 0;

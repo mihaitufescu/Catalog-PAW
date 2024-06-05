@@ -1,0 +1,44 @@
+﻿@page
+@model CatalogOnline.Pages.Chat.ChatModel
+
+<div class="container">
+    <div class="row p-1">
+        <div class="col-8">
+            @if (User.IsInRole("secretary"))
+            {
+                <div class="row p-1">
+                    <div class="col-2">Title</div>
+                    <div class="col-8"><input type="text" class="w-100" id="titleInput" /></div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-8">
+                        <input type="hidden" id="userInput" value="@Model.Username" /> <!-- Hidden input for username -->
+                    </div>
+                </div>
+                
+                <div class="row p-1">
+                    <div class="col-2">Message</div>
+                    <div class="col-8"><input type="text" class="w-100" id="messageInput" /></div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-10 text-end">
+                        <input type="button" id="sendButton" value="Send Message" />
+                    </div>
+                </div>
+            }
+            <div class="row p-1">
+                <div class="col-10">
+                    <hr />
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-10">
+                    <ul id="messagesList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

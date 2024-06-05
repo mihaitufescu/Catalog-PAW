@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CatalogOnline.DAL.DBO;
 using CatalogOnline.Models;
 using CatalogOnline.DAL.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CatalogOnline.Pages
 {
+    [Authorize(Roles = "admin")]
     public class AddCourseModel : PageModel
     {
         private readonly ICourseRepository courseRepository;

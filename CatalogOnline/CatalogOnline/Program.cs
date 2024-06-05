@@ -5,11 +5,12 @@ using CatalogOnline.DAL;
 using CatalogOnline.Services.Interfaces;
 using CatalogOnline.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using CatalogOnline.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<CatalogOnline.DAL.DataContext>(options =>
 {
@@ -25,7 +26,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("admin"));
-    options.AddPolicy("AllowedRoles", policy => policy.RequireRole("admin", "secretar", "teacher"));
+    options.AddPolicy("AllowedRoles", policy => policy.RequireRole("admin", "secretary", "teacher"));
     options.AddPolicy("Student", policy => policy.RequireRole("student"));
 });
 
@@ -64,7 +65,6 @@ app.UseRouting();
 
 app.UseAuthentication(); // Ensure this is added
 app.UseAuthorization();
-
 app.MapRazorPages();
-
+app.MapHub<ChatHub>("/chatHub");
 app.Run();

@@ -1,6 +1,11 @@
 ﻿    @page
     @model CatalogOnline.Pages.Authentification.LoginModel
-
+    @if (Model.HasReturnUrl)
+    {
+        <div class="alert alert-warning" role="alert">
+            You need to log in to access this page. Only secretaries are allowed.
+        </div>
+    }
     <div class="container border" style="padding:10px;">
         <form method="post">
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>

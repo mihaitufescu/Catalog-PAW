@@ -19,6 +19,7 @@ namespace CatalogOnline.Pages.Authentification
 
         [BindProperty]
         public UserLoginModel User { get; set; }
+        public bool HasReturnUrl { get; set; }
 
         public LoginModel(DataContext context)
         {
@@ -27,6 +28,7 @@ namespace CatalogOnline.Pages.Authentification
 
         public void OnGet()
         {
+            HasReturnUrl = !string.IsNullOrEmpty(Request.Query["ReturnUrl"]);
         }
 
         public async Task<IActionResult> OnPostAsync()

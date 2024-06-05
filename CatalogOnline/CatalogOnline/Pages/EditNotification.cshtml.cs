@@ -2,6 +2,7 @@ using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
 {
+    [Authorize(Roles = "admin")]
     public class EditNotificationModel : PageModel
     {
         private readonly ILogger<EditNotificationModel> logger;

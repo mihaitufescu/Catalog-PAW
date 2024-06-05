@@ -2,6 +2,7 @@ using CatalogOnline.DAL.DBO;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CatalogOnline.Pages
 {
+    [Authorize(Roles = "teacher,admin")]
     public class AddGradeModel : PageModel
     {
         private readonly ILogger<AddGradeModel> logger;
@@ -44,8 +46,8 @@ namespace CatalogOnline.Pages
         {
             if (!ModelState.IsValid || !IsValidGrade(Grade))
             {
-                Students = userRepository.GetAllStudents();
-                Courses = courseRepository.GetAllCourses();
+                // AddModelError to indicate failure to add a grade
+                ModelState.AddModelError(string.Empty, "Failed to add grade");
                 return Page();
             }
 
@@ -58,9 +60,20 @@ namespace CatalogOnline.Pages
                 percentage = Grade.percentage
             };
 
-
-            gradeRepository.AddGrade(newGrade);
-            return RedirectToPage("Grade");
+            try
+            {
+                gradeRepository.AddGrade(newGrade);
+                Students = userRepository.GetAllStudents();
+                Courses = courseRepository.GetAllCourses();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it accordingly
+                // AddModelError to indicate failure to add a grade
+                ModelState.AddModelError(string.Empty, "An error occurred while adding the grade. Please try again later.");
+                return Page();
+            }
         }
 
         private bool IsValidGrade(GradeRegisterModel grade)

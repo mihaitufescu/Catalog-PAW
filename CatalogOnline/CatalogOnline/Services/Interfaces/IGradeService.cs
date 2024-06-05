@@ -11,6 +11,7 @@ namespace CatalogOnline.Services.Interfaces
         GradeModel GetGradeModelById(int gradeId);
         List<GradeModel> GetGradesByCourseId(int courseId);
         List<GradeModel> GetGradesByStudentAndCourse(int studentId, int courseId);
+        List<DisplayGradeModel> GetGradesWithCourseDetailsByStudentId(int studentId);
 
 
     }

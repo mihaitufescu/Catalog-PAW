@@ -11,60 +11,115 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">CatalogOnline</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">CatalogOnline</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Authentification/Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Authentification/Register">Register</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated &&  (User.IsInRole("admin") ||  User.IsInRole("teacher") ))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/User">Users</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Course">Course</a>
-                        </li>
+                    }
+                    @if (User.IsInRole("student"))
+                    {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Grade">Grade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Enrollment">Enrollment</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Course">Course</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Notification">Notification</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Get Documents</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Document">Document</a>
                         </li>
-                        @if (User.IsInRole("student")){
-
+                    }
+                    @if (User.IsInRole("teacher"))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Get Documents</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/AddGrade">Add Grade</a>
                         </li>
-                        }
-                        
-                        @if (User.IsInRole("student"))
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Chat/Chat">Chat</a>
+                        </li>
+                    }
+                        @if (User.IsInRole("admin"))
                         {
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/ViewCourses">School Situtation </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Add
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddCourse">Add Course</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddEnrollment">Add Enrollment</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddGrade">Add Grade</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddNotification">Add Notification</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddUser">Add User</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Edit
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-page="/Course">Course</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Enrollment">Enrollment</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Notification">Notification</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/User">User</a>
+                                </div>
                             </li>
                         }
-                    </ul>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <form class="form-inline my-2 my-lg-0" asp-page="/Authentification/Login" asp-page-handler="Logout" method="post">
+                        @if (User.IsInRole("teacher"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/AddGrade">Add Grade</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Chat/Chat">Chat</a>
+                            </li>
+                        }
+                        
+                        @if (User.IsInRole("secretary"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Add
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddDocument">Add Document</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/AddEnrollment">Add Enrollment</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Edit
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-page="/Document">Edit Document</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Enrollment">Edit Enrollment</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Chat/Chat">Chat</a>
+                            </li>
+                        }
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form class="form-inline my-2 my-lg-0" asp-page="/Authentification/Login" asp-page-handler="Logout" method="post">
                             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
                         </form>
                     }
@@ -72,6 +127,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
