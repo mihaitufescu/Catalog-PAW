@@ -16,7 +16,7 @@ namespace CatalogOnline.DAL.Repository
 
         public User GetUserByName(string name)
         {
-            return _context.User.FirstOrDefault(p => p.legal_name.Trim().ToUpper() == name.Trim().ToUpper());
+            return _context.User.FirstOrDefault(p => p.username.Trim().ToUpper() == name.Trim().ToUpper());
         }
 
         public List<User> GetUsers()

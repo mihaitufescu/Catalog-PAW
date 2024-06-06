@@ -5,22 +5,63 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome to CatalogOnline</h1>
     @if (!string.IsNullOrEmpty(Model.LoggedInUsername))
     {
-        <p>Hello, @Model.LoggedInUsername</p>
-        <p>Id: @Model.LoggedId</p>
-        <p>Role: @Model.Role</p>
+        <div class="text-center mt-4">
+            <form class="d-flex" method="get" asp-page="/SearchCourse">
+                <input class="form-control me-2" type="text" name="searchTerm" placeholder="Search for informations about a course" class="form-control" required />
+                <button class="btn btn-outline-success" type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+        </div>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                Date generale
+            </div>
+            <div class="card-body">
+                <table class="table table-ligth">
+                    <tr>
+                        <td>Username</td>
+                        <td>@Model._user.username</td>
+                    </tr>
+                    <tr>
+                        <td>Full name</td>
+                        <td>@Model._user.legal_name</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@Model._user.email</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Useful features
+            </div>
+            <table class="table table-ligth">
+                <tr>
+                    <td>Academic situation</td>
+                    <td><a href="/AcademicSituation">Click here</a></td>
+                </tr>
+                <tr>
+                    <td>Request or view documents</td>
+                    <td><a href="/Documents">Click here </a></td>
+                </tr>
+                <tr>
+                    <td>Check notifications</td>
+                    <td><a href="/Notifications">Click here </a></td>
+                </tr>
+            </table>
+        </div>
+
     }
     else
     {
-        <p>Please <a href="/Authentification/Login">log in</a> to see personalized content.</p>
+        <p>In order to access the features, please <a href="/Authentification/Login">log in</a> to see personalized content.</p>
     }
 </div>
 
-<div class="text-center mt-4">
-    <form method="get" asp-page="/SearchCourse">
-        <input type="text" name="searchTerm" placeholder="Search for a course" class="form-control" required />
-        <button type="submit" class="btn btn-primary mt-2">Search</button>
-    </form>
-</div>
+

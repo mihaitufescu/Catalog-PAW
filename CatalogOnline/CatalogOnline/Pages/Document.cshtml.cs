@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CatalogOnline.Pages
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin,secretary")]
 
     public class DocumentPageModel : PageModel
     {
