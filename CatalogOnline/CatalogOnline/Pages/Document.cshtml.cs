@@ -1,11 +1,14 @@
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CatalogOnline.Pages
 {
+    [Authorize(Roles = "admin")]
+
     public class DocumentPageModel : PageModel
     {
         private readonly IDocumentService documentService;

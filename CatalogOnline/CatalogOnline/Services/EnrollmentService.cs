@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CatalogOnline.DAL.DBO;
+using CatalogOnline.DAL.Repository;
 using CatalogOnline.DAL.Repository.Interfaces;
 using CatalogOnline.Models;
 using CatalogOnline.Services.Interfaces;
@@ -15,9 +16,11 @@ namespace CatalogOnline.Services
         private readonly IEnrollmentRepository _enrollmentRepository;
         private readonly ICourseRepository _courseRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IGradeRepository _gradeRepository; 
+        private readonly IGradeRepository _gradeRepository;
+        private readonly INotificationRepository _notificationRepository;
+
         public EnrollmentService(IMapper mapper, IEnrollmentRepository enrollmentRepository,
-            ICourseRepository courseRepository, IUserRepository userRepository, IGradeRepository gradeRepository)
+            ICourseRepository courseRepository, IUserRepository userRepository, IGradeRepository gradeRepository, INotificationRepository notificationRepository)
         {
             _mapper = mapper;
             _enrollmentRepository = enrollmentRepository;
@@ -25,6 +28,8 @@ namespace CatalogOnline.Services
             _userRepository = userRepository;
             _courseRepository = courseRepository;
             _gradeRepository = gradeRepository;
+            _notificationRepository = notificationRepository;
+
 
         }
 
@@ -101,6 +106,7 @@ namespace CatalogOnline.Services
 
             return (await Task.WhenAll(coursesWithGrades)).ToList();
         }
+
 
     }
 }

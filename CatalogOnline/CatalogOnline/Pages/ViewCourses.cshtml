@@ -3,71 +3,70 @@
 @{
 }
 
-<h1 class="text-center">Your Course List</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Your Course List</h1>
 
-<form method="get">
-    <div class="form-group">
-        <label for="yearSelect">Select Year:</label>
-        <select id="yearSelect" name="year" class="form-control" asp-for="SelectedYear" asp-items="Model.Years">
-            <option value="">--Select Year--</option>
-        </select>
+    <div class="row justify-content-center">
+        <form method="get" class="form-inline">
+            <div class="form-group mr-2">
+                <label for="yearSelect" class="sr-only">Select Year</label>
+                <select id="yearSelect" name="year" class="form-control" asp-for="SelectedYear" asp-items="Model.Years">
+                    <option value="">--Select Year--</option>
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <label for="sortOrder" class="sr-only">Sort By</label>
+                <select id="sortOrder" name="sortOrder" class="form-control">
+                    <option value="name">Course Name</option>
+                    <option value="medie">Average Grade (Medie)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary">Confirm</button>
-</form>
 
-<form method="get">
-    <input type="hidden" name="year" value="@Model.SelectedYear" />
-    <div class="form-group">
-        <label for="sortOrder">Sort By:</label>
-        <select id="sortOrder" name="sortOrder" class="form-control">
-            <option value="name">Course Name</option>
-            <option value="medie">Average Grade (Medie)</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-secondary">Sort</button>
-</form>
-
-@if (Model.SelectedYear.HasValue)
-{
-    <h2 class="text-center">Year: @Model.SelectedYear</h2>
-    @if (ViewData["AverageMedie"] != null)
+    @if (Model.SelectedYear.HasValue)
     {
-        <h3 class="text-center">Medie: @ViewData["AverageMedie"]</h3>
-    }
+        <h2 class="text-center">Year: @Model.SelectedYear</h2>
+        @if (ViewData["AverageMedie"] != null && !double.IsNaN((double)ViewData["AverageMedie"]))
+        {
+            <h3 class="text-center">Medie: @ViewData["AverageMedie"]</h3>
+        }
 
-    @if (Model.Courses != null && Model.Courses.Any())
-    {
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Course Name</th>
-                    <th>Course Credits</th>
-                    <th>Semester</th>
-                    <th>Grades</th>
-                    <th>Average (Medie)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var course in Model.Courses)
-                {
+        @if (Model.Courses != null && Model.Courses.Any())
+        {
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>@course.CourseName</td>
-                        <td>@course.Credits</td>
-                        <td>@course.Semester</td>
-                        <td>
-                            @foreach (var grade in course.Grades)
-                            {
-                                <div>@grade.TypeOfExam - @grade.Score (@grade.Percentage%)</div>
-                            }
-                        </td>
-                        <td>@course.Medie.ToString("0")</td>
+                        <th>Course Name</th>
+                        <th>Course Credits</th>
+                        <th>Semester</th>
+                        <th>Grades</th>
+                        <th>Average (Medie)</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var course in Model.Courses)
+                    {
+                        <tr>
+                            <td>@course.CourseName</td>
+                            <td>@course.Credits</td>
+                            <td>@course.Semester</td>
+                            <td>
+                                @foreach (var grade in course.Grades)
+                                {
+                                    <div>@grade.TypeOfExam - @grade.Score (@grade.Percentage%)</div>
+                                }
+                            </td>
+                            <td>@course.Medie.ToString("0")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-center">You are not enrolled in any courses.</p>
+        }
     }
-}
-else
-{
-    <p class="text-center">You are not enrolled in any courses.</p>
-}
+</div>

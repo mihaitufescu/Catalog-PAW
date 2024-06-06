@@ -44,7 +44,10 @@ namespace CatalogOnline.DAL.Repository
             }
         }
 
-
+        public List<Notification> GetNotificationsByUserId(int userId)
+        {
+            return _context.Notification.Where(n => n.user_id == userId).ToList();
+        }
 
     }
 }

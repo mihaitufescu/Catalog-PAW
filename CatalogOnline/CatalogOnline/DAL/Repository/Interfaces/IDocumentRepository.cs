@@ -12,5 +12,8 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         Task<bool> AddDocument(Document document);
         Task<bool> UpdateDocument(Document document);
         void DeleteDocument(int id);
+
+        IEnumerable<Document> GetDocumentsByUserId(int userId);
+
     }
 }

@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model CatalogOnline.Pages.ViewCourseDetailsModel
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1>Course Details</h1>
+
+@if (Model.Course != null)
+{
+    <div>
+        <h2>@Model.Course.subject</h2>
+        <p><strong>Mandatory:</strong> @(Model.Course.mandatory ? "Yes" : "No")</p>
+        <p><strong>Credits Number:</strong> @Model.Course.credits_number</p>
+        <p><strong>Year:</strong> @Model.Course.year</p>
+    </div>
+}
+else
+{
+    <p>Course not found.</p>
+}

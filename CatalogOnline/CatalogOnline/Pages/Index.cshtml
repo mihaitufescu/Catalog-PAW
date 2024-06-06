@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model CatalogOnline.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -16,5 +16,11 @@
     {
         <p>Please <a href="/Authentification/Login">log in</a> to see personalized content.</p>
     }
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="text-center mt-4">
+    <form method="get" asp-page="/SearchCourse">
+        <input type="text" name="searchTerm" placeholder="Search for a course" class="form-control" required />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
 </div>

@@ -1,0 +1,40 @@
+﻿@page
+@model CatalogOnline.Pages.DocumentHistoryModel
+@{
+    ViewData["Title"] = "Document History";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Documents != null && Model.Documents.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in Model.Documents)
+            {
+                <tr>
+                    <td>@document.title</td>
+                    <td>@document.description</td>
+                    <td>@document.date.ToString("dd/MM/yyyy")</td>
+                    <td>@document.type</td>
+                    <td>
+                        <a class="btn btn-primary" href="@document.location" target="_blank">Download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No documents found.</p>
+}

@@ -13,6 +13,7 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         Task<bool> UpdateCourse(Course course);
         void DeleteCourse(int courseId);
 
+        Course FindCourseByName(string courseName);
         
     }
 }

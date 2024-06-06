@@ -1,0 +1,14 @@
+﻿@page
+@model CatalogOnline.Pages.SearchCourseModel
+@{
+    ViewData["Title"] = "Search Course";
+}
+
+<h1>Search Course</h1>
+
+@if (ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">
+        <p>@ModelState[""].Errors[0].ErrorMessage</p>
+    </div>
+}

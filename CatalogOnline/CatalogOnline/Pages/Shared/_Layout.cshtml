@@ -41,10 +41,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Course">Course</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Get Documents</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RequestDocument">Documents</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Document">Document</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ViewCourses">Academic Situation</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ViewNotifications">Notifications</a>
                         </li>
                     }
                     @if (User.IsInRole("teacher"))
@@ -81,6 +84,11 @@
                                     <a class="dropdown-item" asp-area="" asp-page="/User">User</a>
                                 </div>
                             </li>
+                        
+                        <li class="nav-item">
+                         <a class="nav-link text-dark" asp-area="" asp-page="/GroupCatalogs">Catalog</a>
+                        </li>
+                            
                         }
                         @if (User.IsInRole("teacher"))
                         {

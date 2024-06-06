@@ -6,6 +6,15 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form method="post" asp-page-handler="GenerateCertificate">
-    <button type="submit" class="btn btn-primary">Generate Student Certificate</button>
-</form>
+<div style="margin-top: 20px;">
+    <form method="get" asp-page="/DocumentHistory">
+        <button type="submit" class="btn btn-secondary">Document History</button>
+    </form>
+</div>
+<div>
+    <form method="post" asp-page-handler="GenerateCertificate">
+        <button type="submit" class="btn btn-primary">Generate Student Certificate</button>
+    </form>
+</div>
+
+

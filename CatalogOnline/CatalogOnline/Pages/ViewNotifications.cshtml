@@ -1,0 +1,21 @@
+﻿@page
+@model CatalogOnline.Pages.ViewNotificationsModel
+@{
+    ViewData["Title"] = "ViewNotifications";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Notifications != null && Model.Notifications.Any())
+{
+    <ul>
+        @foreach (var notification in Model.Notifications)
+        {
+            <li>@notification.message - @notification.date.ToString("dd/MM/yyyy")</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No notifications found.</p>
+}

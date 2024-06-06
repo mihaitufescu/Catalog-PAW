@@ -10,6 +10,8 @@ namespace CatalogOnline.DAL.Repository.Interfaces
         Task<bool> AddNotification(Notification notification);
         Task<bool> UpdateNotification(Notification notification);
         void DeleteNotification(int id);
+        List<Notification> GetNotificationsByUserId(int userId);
+
 
     }
 

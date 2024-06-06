@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,13 +19,15 @@ namespace CatalogOnline.Pages
         private readonly IGradeRepository gradeRepository;
         private readonly IUserRepository userRepository;
         private readonly ICourseRepository courseRepository;
+        private readonly INotificationRepository notificationRepository;
 
         public AddGradeModel(IGradeRepository _gradeRepository, IUserRepository _userRepository,
-            ICourseRepository _courseRepository, ILogger<AddGradeModel> _logger)
+            ICourseRepository _courseRepository, INotificationRepository _notificationRepository, ILogger<AddGradeModel> _logger)
         {
             gradeRepository = _gradeRepository;
             userRepository = _userRepository;
             courseRepository = _courseRepository;
+            notificationRepository = _notificationRepository;
             logger = _logger;
         }
 
@@ -38,7 +41,6 @@ namespace CatalogOnline.Pages
         {
             Students = userRepository.GetAllStudents();
             Courses = courseRepository.GetAllCourses();
-
             return Page();
         }
 
@@ -63,6 +65,16 @@ namespace CatalogOnline.Pages
             try
             {
                 gradeRepository.AddGrade(newGrade);
+
+                var notification = new Notification
+                {
+                    user_id = Grade.user_id,
+                    message = $"You have received a new grade: {Grade.score} in course {Grade.course_id}",
+                    date = DateTime.Now
+                };
+
+                notificationRepository.AddNotification(notification);
+
                 Students = userRepository.GetAllStudents();
                 Courses = courseRepository.GetAllCourses();
                 return Page();

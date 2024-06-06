@@ -63,5 +63,10 @@ namespace CatalogOnline.DAL.Repository
             _context.Course.Update(course);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public Course FindCourseByName(string courseName)
+        {
+            return _context.Course.FirstOrDefault(c => c.subject == courseName);
+        }
     }
 }

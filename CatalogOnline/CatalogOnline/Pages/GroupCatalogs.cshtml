@@ -1,0 +1,29 @@
+﻿@page
+@model CatalogOnline.Pages.GroupCatalogsModel
+@{
+    ViewData["Title"] = "Group Catalogs";
+}
+
+<h1>Group Catalogs</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model.Groups)
+        {
+            <tr>
+                <td>@group</td>
+                <td>
+                    <form method="post" asp-page-handler="GenerateGroupReport" asp-route-group="@group">
+                        <button type="submit" class="btn btn-primary">Export as PDF</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

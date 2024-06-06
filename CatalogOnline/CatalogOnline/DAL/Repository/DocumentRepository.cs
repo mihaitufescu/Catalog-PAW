@@ -58,6 +58,11 @@ namespace CatalogOnline.DAL.Repository
 
         }
 
+        public IEnumerable<Document> GetDocumentsByUserId(int userId)
+        {
+            return _context.Document.Where(d => d.user_id == userId).ToList();
+        }
+
 
     }
 }
